@@ -2,6 +2,7 @@ var table = layui.table;
 var upload = layui.upload;
 var _img_id=0;
 
+
 var _table_render = table.render({
     elem: '#TableOne'
     , url: '/ads/data'
