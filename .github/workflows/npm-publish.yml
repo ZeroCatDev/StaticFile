@@ -23,7 +23,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-           minor-wording:  '1,new'
+          minor-wording:  'minor-wording'
+          major-wording:  'major-wording'
+          patch-wording:  'patch-wording'     # Providing patch-wording will override commits
+                                      # defaulting to a patch bump.
+          rc-wording:     'rc-wording'
       - run: git config --global user.email "sun@wuyuan.dev"
       - run: git config --global user.name "SunWuyuan"
       - run: npm i
