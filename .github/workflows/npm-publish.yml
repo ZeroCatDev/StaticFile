@@ -31,7 +31,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          majorWords: [ '1', 'major' ]
+           minor-wording:  '1,new'
       - run: git config --global user.email "sun@wuyuan.dev"
       - run: git config --global user.name "SunWuyuan"
       - run: npm i
