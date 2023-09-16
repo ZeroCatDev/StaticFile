@@ -25,6 +25,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - run: git config --global user.email "sun@wuyuan.dev"
+      - run: git config --global user.name "SunWuyuan"
       - run: npm i
       - run: npm version patch
       - run: npm publish
