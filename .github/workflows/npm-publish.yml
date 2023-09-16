@@ -32,7 +32,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           majorWords: [ '1', 'major' ]
-          rc-wording: 'RELEASE,alpha,PicX'
       - run: git config --global user.email "sun@wuyuan.dev"
       - run: git config --global user.name "SunWuyuan"
       - run: npm i
