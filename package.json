@@ -4,7 +4,7 @@
   "description": "ourworld.wuyuan.dev",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && npm version patch"
+    "test": "echo \"Error: no test specified\" "
   },
   "author": "wydev",
   "license": "ISC"
