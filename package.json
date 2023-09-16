@@ -4,7 +4,7 @@
   "description": "ourworld.wuyuan.dev",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" "
+    "test": "echo \"test\" "
   },
   "author": "wydev",
   "license": "ISC",
