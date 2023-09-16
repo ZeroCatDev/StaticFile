@@ -25,6 +25,14 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          default: prerelease
+          rc-wording: 'RELEASE,alpha,PicX'
       - run: git config --global user.email "sun@wuyuan.dev"
       - run: git config --global user.name "SunWuyuan"
       - run: npm i
