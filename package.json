@@ -1,6 +1,6 @@
 {
   "name": "ourworldstaticfile",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "description": "ourworld.wuyuan.dev",
   "main": "index.js",
   "scripts": {
