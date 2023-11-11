@@ -18,6 +18,11 @@ editor.setOption("mode", "python");
 editor.setValue($("#code_textarea").val());
 window.CodeMirror = CodeMirror;
 
+function getQueryString(name) {
+  const url_string = window.location.href
+  const url = new URL(url_string);
+  return url.searchParams.get(name);
+}
 //动态获取作品
 function getWork() {
   AjaxFn("/python/getWork", { id: getQueryString('id') }, function (r) {
@@ -27,11 +32,6 @@ function getWork() {
       mdui.snackbar(r.msg);
     }
   });
-}
-function getQueryString(name) {
-  const url_string = window.location.href
-  const url = new URL(url_string);
-  return url.searchParams.get(name);
 }
 !(function () {
   getWork(); //主动执行一次
