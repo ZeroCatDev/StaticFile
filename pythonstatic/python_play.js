@@ -48,11 +48,11 @@ function show_python_userinfo(work) {
   document.getElementById('touserurl').href = '/user?id=' + work.id;
   document.getElementById('touserurl').onclick = function () { openuserpage ()};
   function openuserpage () {
-    window.open('/user?id=' + work.id)
+    window.open('/user?id=' + work.id,"_self")
   }
   $("#authorimg").attr(
     "src",
-    `${qiniuurl}/user/${work.id}.png`
+    `/api/usertx?id=${work.id}`
   ); //jq方式
 }
 //用一个作品数据初始化界面
