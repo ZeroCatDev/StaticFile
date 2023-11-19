@@ -1,24 +1,10 @@
 var _work_changed = false;
-
-/// The highlighting style for code in the One Dark theme. export const oneDarkHighlightStyle = HighlightStyle.define([ {tag: t.keyword, color: violet}, {tag: [t.name, t.deleted, t.character, t.propertyName, t.macroName], color: coral}, {tag: [t.function(t.variableName), t.labelName], color: malibu}, {tag: [t.color, t.constant(t.name), t.standard(t.name)], color: whiskey}, {tag: [t.definition(t.name), t.separator], color: ivory}, {tag: [t.typeName, t.className, t.number, t.changed, t.annotation, t.modifier, t.self, t.namespace], color: chalky}, {tag: [t.operator, t.operatorKeyword, t.url, t.escape, t.regexp, t.link, t.special(t.string)], color: cyan}, {tag: [t.meta, t.comment], color: stone}, {tag: t.strong, fontWeight: "bold"}, {tag: t.emphasis, fontStyle: "italic"}, {tag: t.strikethrough, textDecoration: "line-through"}, {tag: t.link, color: stone, textDecoration: "underline"}, {tag: t.heading, fontWeight: "bold", color: coral}, {tag: [t.atom, t.bool, t.special(t.variableName)], color: whiskey }, {tag: [t.processingInstruction, t.string, t.inserted], color: sage}, {tag: t.invalid, color: invalid}, ])
-var editor = CodeMirror.fromTextArea($("#code_textarea")[0], {
-  //script_once_code为你的textarea的ID号
-  lineNumbers: true, //是否显示行号
-  mode: "shell", //默认脚本编码
-  lineWrapping: true, //是否强制换行
+var require = { paths: { vs: '<%= process.env.staticurl %>/vs' } };
+var editor = monaco.editor.create(document.getElementById('container'), {
+  language: 'python',
+  theme: 'vs-dark'// vs, hc-black, or vs-dark
 });
 
-editor.on("keypress", function () {
-  editor.showHint(); //显示智能提示
-  if (!_work_changed) {
-    _work_changed = true;
-    $("#save_work_box").show();
-  }
-});
-editor.setOption("theme", "solarized dark");
-editor.setOption("mode", "python");
-editor.setValue($("#code_textarea").val());
-window.CodeMirror = CodeMirror;
 
 //动态获取作品
 function getWork(hashWorkId) {
@@ -147,7 +133,7 @@ function save_file() {
 
   _work_title = t;
 
-  src = window.editor.getValue();
+  src = editor.getValue()
 
   var n = new File([src], _work_title + ".py", {
     type: "text/plain;charset=utf-8",
@@ -171,7 +157,7 @@ function save_work() {
 
   _work_title = t;
   _work_info = d;
-  data = window.editor.getValue();
+  data = editor.getValue()
   AjaxFn(
     "/python/save",
     { id: _work_id, title: _work_title, description: _work_info, data: data },
@@ -246,7 +232,7 @@ function publish_work(s) {
 
 // 运行部分
 function outf(H) {
-  var t = document.getElementById("output");
+  var t = document.getElementById("output")  ;
   t.innerHTML = t.innerHTML + H;
 }
 function builtinRead(n) {
@@ -256,7 +242,7 @@ function builtinRead(n) {
 }
 // 代码模式运行
 function run_it() {
-  src = window.editor.getValue();
+  src = editor.getValue()
 
   var OP_Div = document.getElementById("output");
   OP_Div.innerHTML = "";
