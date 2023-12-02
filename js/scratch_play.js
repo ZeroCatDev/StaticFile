@@ -300,13 +300,13 @@ class VideoProvider {
 //项目数据下载URL：
 function getProjectUrl(asset) {
 var assetIdParts = asset.assetId.split('.');
-var assetUrlParts = ["//"+window.location.host+"/", 'scratch/play/project/', assetIdParts[0]];
+var assetUrlParts = ['https://scratch-projects.190823.xyz/', assetIdParts[0]];
 if (assetIdParts[1]) {assetUrlParts.push(assetIdParts[1]);}
 return assetUrlParts.join('');
 };
 //项目资源文件下载URL
 function getAssetUrl(asset) {
-var assetUrlParts = [qiniuurl+'/material/asset/', asset.assetId, '.', asset.dataFormat];
+var assetUrlParts = ['https://scratch-assets.190823.xyz/internalapi/asset/', asset.assetId, '.', asset.dataFormat];
 return assetUrlParts.join('');
 };
 
