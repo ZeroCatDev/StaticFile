@@ -114,8 +114,8 @@ function register() {
 
   var pw = $("#reg_password").val();
   //if (!userpwdTest(pw)) {$("#reg_password").focus();mdui.snackbar({buttonText: '关闭', message: '密码格式:6~16长度,数字+字母+!@#$%^&*'});return;}
-  //var re = grecaptcha.getResponse("1");
-var re = '1;'
+
+  var re = grecaptcha.getResponse("1");
   AjaxFn("/user/register", { un: un, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
@@ -144,8 +144,7 @@ function login() {
     mdui.snackbar({ buttonText: "关闭", message: "密码不正确" });
     return;
   }
-  var re = '1'
-  //var re = grecaptcha.getResponse("0");
+  var re = grecaptcha.getResponse("0");
   AjaxFn("/user/login", { un: un, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();

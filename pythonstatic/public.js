@@ -39,7 +39,7 @@ var numberTest = function(v) {
 function AjaxFn(url, data, callbackFn) {
     $.ajax({
         'url': url,
-        'type': 'GET',
+        'type': 'POST',
         'data': data,
         'error': function(err) {},
         'success': function(res) {

@@ -6,7 +6,7 @@ function sooncoming() {
 function AjaxFn(url, data, callbackFn) {
   $.ajax({
     url: url,
-    type: "GET",
+    type: "POST",
     data: data,
     success: function (d) {
       callbackFn(d);
