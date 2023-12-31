@@ -7,7 +7,7 @@
     "test": "echo \"test\" "
   },
   "author": "wydev",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "npm-version-bump": "^1.0.0"
   }
