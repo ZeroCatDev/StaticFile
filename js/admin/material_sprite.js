@@ -38,8 +38,7 @@ var _table_render = table.render({
         if (_tagId==0){return;}
 
         $(`#tag_btn${_tagId}`).addClass('layui-btn-warm').siblings().removeClass('layui-btn-warm');
-        $("#add_sprite_btn").removeClass("layui-hide");
-        $("#import_sprite_btn").removeClass("layui-hide");
+        $("#add_mate_btn").removeClass("layui-hide");
     }
 });
 
@@ -122,63 +121,3 @@ table.on('edit(TableOne)', function(obj){
         });
     }
 });
-// 从作品中导入角色：选择作品
-function onSearchWork(e){//输入项目名后，搜索项目
-    if(e.keyCode == "13") {  
-        title = $('#search_work_title').val();
-		_table_thr.reload({where: {t:title},page: {curr: 1}});
-    } 
-};
-function selectWorkID(){
-    var select_data=[];
-    layer.open({
-        type: 1
-        ,shadeClose: true
-        ,offset: 'lt'
-        ,title: '请选择要导入角色的作品'
-        ,btn: ['确定','取消']
-        ,area: ['550px', '650px']
-        ,content:`<div style="margin:12px">
-                    <input id="search_work_title" type="text" maxlength="32" placeholder="搜索：请输入作品名称并回车" class="layui-input" onkeypress="onSearchWork(event)">
-                    <table class="layui-hide" id="TableThr" lay-filter="TableThr"></table>
-                  </div>`
-        ,success:function(){
-            //设置被选中的选项
-            _table_thr = table.render({
-                elem: '#TableThr'
-                , url: '/admin/material/sprite/worklist'
-                , where: {t:""}
-                , page: true
-                 , cols: [[
-                    { field: 'id',width:120,title: 'ID'}, 
-                    { field: 'title',title: '作品名称'}
-                    ]]                    
-                , parseData: function (res) {
-                    return {
-                        "code": 0,
-                        "msg": "", 
-                        "count": res.count,
-                        "data": res.data
-                    };
-                }
-            });
-            //监听行单击事件（双击事件为：rowDouble）//选中radio样式
-            table.on('row(TableThr)', function(obj){
-                select_data = obj.data;
-				obj.tr.siblings().attr({ "style": "background:#FFFFFF" });//其他tr恢复原样
-                obj.tr.attr({ "style": "background:#5FB878" });//改变当前tr颜色
-            });
-        }
-        ,yes:function(index){
-            console.error(select_data);
-            if (select_data.length==0){return;}
-			AjaxFn('/admin/material/sprite/import', {tagid:_tagId, workid:select_data.id}, function (res){
-                layer.msg(res.msg);
-				if ('ok' == res.status){
-                    _table_render.reload({where: {tagId: _tagId}, page:{curr:1}});
-                    layer.close(index);
-                }
-            })
-        }
-    }); 
-};
