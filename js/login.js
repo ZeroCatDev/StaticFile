@@ -139,11 +139,7 @@ function login() {
   }
 
   var pw = $("#password").val();
-  if (!userpwdTest(pw)) {
-    $("#password").focus();
-    mdui.snackbar({ buttonText: "关闭", message: "密码不正确" });
-    return;
-  }
+  //if (!userpwdTest(pw)) { $("#password").focus(); mdui.snackbar({ buttonText: "关闭", message: "密码不正确" }); return; }
   var re = grecaptcha.getResponse("0");
   AjaxFn("/user/login", { un: un, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {

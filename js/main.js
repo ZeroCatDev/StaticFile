@@ -27,7 +27,7 @@ var usernameTest = function (pw) {
 };
 
 var userpwdTest = function (pw) {
-  var reg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,16}$/;
+  var reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/  ;
   return reg["test"](pw);
 };
 var spaceTest = function (str) {

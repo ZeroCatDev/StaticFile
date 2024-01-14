@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"test\" "
   },
-  "author": "Sunwuyuan",
+  "author": "wydev",
   "license": "MIT",
   "devDependencies": {
     "npm-version-bump": "^1.0.0"
