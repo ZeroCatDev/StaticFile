@@ -45,14 +45,10 @@
 //};
 
 function onloadCallback() {
-grecaptcha.render("recaptcha-div-login", {
-    sitekey: "6Lc7viEnAAAAAI02ys4HiujqHx05u0yB9tYKnsy6",
+grecaptcha.render("#recaptcha-div-login-page", {
+    sitekey: rekey,
   });
-  grecaptcha.render("recaptcha-div-signup", {
-    sitekey: "6Lc7viEnAAAAAI02ys4HiujqHx05u0yB9tYKnsy6",
-  });grecaptcha.render("recaptcha-div-findpw", {
-    sitekey: "6Lc7viEnAAAAAI02ys4HiujqHx05u0yB9tYKnsy6",
-  });
+ 
 }
 
 //找回密码
@@ -63,7 +59,7 @@ function getPW() {
     mdui.snackbar({ buttonText: "关闭", message: "邮箱格式不正确" });
     return;
   }
-  var re = grecaptcha.getResponse("2");
+  var re = grecaptcha.getResponse();
   AjaxFn("/user/repw", { un: un, re: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
@@ -115,7 +111,7 @@ function register() {
   var pw = $("#reg_password").val();
   //if (!userpwdTest(pw)) {$("#reg_password").focus();mdui.snackbar({buttonText: '关闭', message: '密码格式:6~16长度,数字+字母+!@#$%^&*'});return;}
 
-  var re = grecaptcha.getResponse("1");
+  var re = grecaptcha.getResponse();
   AjaxFn("/user/register", { un: un, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
@@ -140,7 +136,7 @@ function login() {
 
   var pw = $("#password").val();
   //if (!userpwdTest(pw)) { $("#password").focus(); mdui.snackbar({ buttonText: "关闭", message: "密码不正确" }); return; }
-  var re = grecaptcha.getResponse("0");
+  var re = grecaptcha.getResponse();
   AjaxFn("/user/login", { un: un, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
@@ -175,4 +171,7 @@ function torepw() {
 }
 function switchPage(goPage) {
   $(`#${goPage}`).show().siblings().hide();
+  grecaptcha.render(`#recaptcha-div-${goPage}`, {
+    sitekey: rekey,
+  });
 }
