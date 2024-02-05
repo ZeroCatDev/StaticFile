@@ -413,7 +413,7 @@ const runBenchmark = function () {
         vm.setCompatibilityMode(true);
         //vm.setTurboMode(false);
         vm.greenFlag();
-
+        projectjson = vm.toJSON()
         initialized = true;
     });
 
