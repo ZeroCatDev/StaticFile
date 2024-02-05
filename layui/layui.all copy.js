@@ -9949,7 +9949,7 @@ layui.define("layer", function (e) {
                 i++, d(e, t), u();
               },
               error: function () {
-                n++, mdui.snackbar({buttonText: '关闭', message: "请求上传接口出现异常"}), m(e), u();
+                n++, automsg({buttonText: '关闭', message: "请求上传接口出现异常"}), m(e), u();
               },
             };
             "function" == typeof l.progress &&
@@ -9978,7 +9978,7 @@ layui.define("layer", function (e) {
               try {
                 t = i.text();
               } catch (n) {
-                mdui.snackbar({buttonText: '关闭', message: "获取上传后的响应信息出现异常"}),
+                automsg({buttonText: '关闭', message: "获取上传后的响应信息出现异常"}),
                   clearInterval(p.timer),
                   m();
               }
@@ -9994,7 +9994,7 @@ layui.define("layer", function (e) {
             try {
               t = JSON.parse(t);
             } catch (i) {
-              return (t = {}), mdui.snackbar({buttonText: '关闭', message: "请对上传接口返回有效JSON"});
+              return (t = {}), automsg({buttonText: '关闭', message: "请对上传接口返回有效JSON"});
             }
           "function" == typeof l.done &&
             l.done(t, e || 0, function (e) {
@@ -10056,7 +10056,7 @@ layui.define("layer", function (e) {
         switch (l.accept) {
           case "file":
             if (h && !RegExp("\\w\\.(" + h + ")$", "i").test(escape(v)))
-              return mdui.snackbar({buttonText: '关闭', message: "选择的文件中包含不支持的格式"}), (r.value = "");
+              return automsg({buttonText: '关闭', message: "选择的文件中包含不支持的格式"}), (r.value = "");
             break;
           case "video":
             if (
@@ -10065,7 +10065,7 @@ layui.define("layer", function (e) {
                 "i"
               ).test(escape(v))
             )
-              return mdui.snackbar({buttonText: '关闭', message: "选择的视频中包含不支持的格式"}), (r.value = "");
+              return automsg({buttonText: '关闭', message: "选择的视频中包含不支持的格式"}), (r.value = "");
             break;
           case "audio":
             if (
@@ -10073,7 +10073,7 @@ layui.define("layer", function (e) {
                 escape(v)
               )
             )
-              return mdui.snackbar({buttonText: '关闭', message: "选择的音频中包含不支持的格式"}), (r.value = "");
+              return automsg({buttonText: '关闭', message: "选择的音频中包含不支持的格式"}), (r.value = "");
             break;
           default:
             if (
@@ -10085,7 +10085,7 @@ layui.define("layer", function (e) {
               }),
               n)
             )
-              return mdui.snackbar({buttonText: '关闭', message: "选择的图片中包含不支持的格式"}), (r.value = "");
+              return automsg({buttonText: '关闭', message: "选择的图片中包含不支持的格式"}), (r.value = "");
         }
         if (
           ((a.fileLength = (function () {
@@ -10100,7 +10100,7 @@ layui.define("layer", function (e) {
           })()),
           l.number && a.fileLength > l.number)
         )
-          return mdui.snackbar("同时最多只能上传的数量为：" + l.number);
+          return automsg("同时最多只能上传的数量为：" + l.number);
         if (l.size > 0 && !(o.ie && o.ie < 10)) {
           var F;
           if (
@@ -10114,7 +10114,7 @@ layui.define("layer", function (e) {
             }),
             F)
           )
-            return mdui.snackbar("文件不能超过" + F);
+            return automsg("文件不能超过" + F);
         }
         y();
       }

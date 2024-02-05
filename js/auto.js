@@ -1,7 +1,7 @@
+
 function automsg(msg) {
-    mdui.snackbar({
- 
-        buttonText: '关闭',
-         message:msg,
-        });
-};
+    if (typeof msg === 'string') {
+      msg = { message: msg };
+    }
+    mdui.snackbar(msg);
+  }

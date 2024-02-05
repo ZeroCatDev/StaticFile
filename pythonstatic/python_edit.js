@@ -12,7 +12,7 @@ function getWork(hashWorkId) {
     if ("ok" == r.status) {
       show_python_work(r.work);
     } else {
-      mdui.snackbar(r.msg);
+      automsg(r.msg);
     }
   });
 }
@@ -84,7 +84,7 @@ function show_python_work(work) {
     $("#revise_work").hide();
   }
 
-  mdui.snackbar({ buttonText: "关闭", message: "加载作品成功" });
+  automsg({ buttonText: "关闭", message: "加载作品成功" });
 }
 
 //新建一个作品
@@ -103,7 +103,7 @@ $("#files").change(function () {
     // 判断文件类型是否为PY
     var reg = /.py$/;
     if (!reg.test(n.name)) {
-      mdui.snackbar({ buttonText: "关闭", message: "请选择一个 .py 文件" });
+      automsg({ buttonText: "关闭", message: "请选择一个 .py 文件" });
       return;
     }
 
@@ -127,7 +127,7 @@ $("#files").change(function () {
 function save_file() {
   var t = $("#work_title_input").val();
   if (t.length == 0) {
-    mdui.snackbar({ buttonText: "关闭", message: "作品名称不能为空" });
+    automsg({ buttonText: "关闭", message: "作品名称不能为空" });
     return;
   }
 
@@ -144,14 +144,14 @@ function save_file() {
 // 保存到云端
 function save_work() {
   if (isLogin == "false") {
-    mdui.snackbar({ buttonText: "关闭", message: "请先登录！" });
+    automsg({ buttonText: "关闭", message: "请先登录！" });
     return;
   }
 
   var t = $("#work_title_input").val();
   var d = $("#work_info_input").val();
   if (t.length == 0) {
-    mdui.snackbar({ buttonText: "关闭", message: "作品名称不能为空" });
+    automsg({ buttonText: "关闭", message: "作品名称不能为空" });
     return;
   }
 
@@ -162,7 +162,7 @@ function save_work() {
     "/python/save",
     { id: _work_id, title: _work_title, description: _work_info, data: data },
     function (res) {
-      mdui.snackbar(res["msg"]);
+      automsg(res["msg"]);
       if ("ok" == res.status) {
         _work_changed = false;
         $("#save_work_box").hide();
@@ -181,7 +181,7 @@ function save_work() {
 // 改编此作品
 function revise_work() {
   if (isLogin == "false") {
-    mdui.snackbar({ buttonText: "关闭", message: "请先登录！" });
+    automsg({ buttonText: "关闭", message: "请先登录！" });
     return;
   }
 
@@ -192,7 +192,7 @@ function revise_work() {
   $("#revise_work").hide();
   $("#save_work").show();
 
-  mdui.snackbar({ buttonText: "关闭", message: "操作成功" });
+  automsg({ buttonText: "关闭", message: "操作成功" });
 }
 
 // 作品名称的变化
@@ -206,17 +206,17 @@ function work_title_changed() {
 // 分享作品
 function publish_work(s) {
   if (isLogin == "false") {
-    mdui.snackbar({ buttonText: "关闭", message: "请先登录！" });
+    automsg({ buttonText: "关闭", message: "请先登录！" });
     return;
   }
 
   if (_work_id == 0) {
-    mdui.snackbar({ buttonText: "关闭", message: "请先保存作品到云端！" });
+    automsg({ buttonText: "关闭", message: "请先保存作品到云端！" });
     return;
   }
 
   AjaxFn("/python/publish", { id: _work_id, s: _work_state }, function (r) {
-    mdui.snackbar(r.msg);
+    automsg(r.msg);
     if ("ok" == r.status) {
       if (_work_state == 0) {
         _work_state = 1;
@@ -349,7 +349,7 @@ function openProject(id, index) {
 function open_YX() {
   AjaxFn("/python/YxLibrary_count", {}, function (res) {
     if ("ok" != res.status) {
-      mdui.snackbar(res.msg);
+      automsg(res.msg);
       return;
     }
 
@@ -376,7 +376,7 @@ function open_YX() {
             var lis = [];
             AjaxFn("/python/YxLibrary_data", { page: page }, function (res) {
               if ("ok" != res.status) {
-                mdui.snackbar(res.msg);
+                automsg(res.msg);
                 return;
               }
 
@@ -422,7 +422,7 @@ function open_YX() {
 function open_MY() {
   AjaxFn("/python/MyLibrary_count", {}, function (res) {
     if ("ok" != res.status) {
-      mdui.snackbar(res.msg);
+      automsg(res.msg);
       return;
     }
 
@@ -449,7 +449,7 @@ function open_MY() {
             var lis = [];
             AjaxFn("/python/MyLibrary_data", { page: page }, function (res) {
               if ("ok" != res.status) {
-                mdui.snackbar(res.msg);
+                automsg(res.msg);
                 return;
               }
 

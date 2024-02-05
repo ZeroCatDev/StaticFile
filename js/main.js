@@ -1,5 +1,5 @@
 function sooncoming() {
-  mdui.snackbar({buttonText: '关闭', message: "开发中..."});
+  automsg({buttonText: '关闭', message: "开发中..."});
 }
 
 //服务器通信============================
@@ -65,26 +65,26 @@ function updatePassword() {
 
   if (!userpwdTest(oldPW)) {
     $("#old_password").focus();
-    mdui.snackbar({buttonText: '关闭', message: "原密码格式错误1"});
+    automsg({buttonText: '关闭', message: "原密码格式错误1"});
     return;
   }
   if (!userpwdTest(newPW)) {
     $("#new_password").focus();
-    mdui.snackbar({buttonText: '关闭', message: "新密码格式错误2"});
+    automsg({buttonText: '关闭', message: "新密码格式错误2"});
     return;
   }
 
   if (oldPW == newPW) {
-    mdui.snackbar({buttonText: '关闭', message: "新老密码相同，无需更改3"});
+    automsg({buttonText: '关闭', message: "新老密码相同，无需更改3"});
     return;
   }
 
   AjaxFn("/my/set/pw", { oldpw: oldPW, newpw: newPW }, function (res) {
     if ("ok" == res["status"]) {
       layer.closeAll();
-      mdui.snackbar({buttonText: '关闭', message: "密码修改成功！"});
+      automsg({buttonText: '关闭', message: "密码修改成功！"});
     } else {
-      mdui.snackbar(res["status"]);
+      automsg(res["status"]);
     }
   });
 }
@@ -119,44 +119,44 @@ upload.render({
     if (res.status == "ok") {
       window.location.reload();
     } else {
-      mdui.snackbar(res.status);
+      automsg(res.status);
     }
   },
 });
 
 //获取验证码
 function get_yzm(obj) {
-  mdui.snackbar({buttonText: '关闭', message: "错误"}); //mdui.snackbar({buttonText: '关闭', message: '开源版本，无短信接口'});
+  automsg({buttonText: '关闭', message: "错误"}); //automsg({buttonText: '关闭', message: '开源版本，无短信接口'});
 }
 //判断参数并上传到服务器
 function updateUsername() {
   var pw = $("#old_password").val();
   if (!userpwdTest(pw)) {
     $("#old_password").focus();
-    mdui.snackbar({buttonText: '关闭', message: "密码格式:6~16长度,数字+字母+!@#$%^&*"});
+    automsg({buttonText: '关闭', message: "密码格式:6~16长度,数字+字母+!@#$%^&*"});
     return;
   }
 
   var un = $("#new_username").val();
   if (!phoneTest(un)) {
     $("#new_username").focus();
-    mdui.snackbar({buttonText: '关闭', message: "手机号格式不正确"});
+    automsg({buttonText: '关闭', message: "手机号格式不正确"});
     return;
   }
 
   if (!_GT_Tag.getValidate()) {
-    mdui.snackbar({buttonText: '关闭', message: "请验证手机号"});
+    automsg({buttonText: '关闭', message: "请验证手机号"});
     return;
   }
 
   var yzm = $("#yzm_input").val();
   if (yzm.length != 4) {
     $("#yzm_input").focus();
-    mdui.snackbar({buttonText: '关闭', message: "请输入验证码"});
+    automsg({buttonText: '关闭', message: "请输入验证码"});
     return;
   }
 
-  mdui.snackbar({buttonText: '关闭', message: "错误"}); //mdui.snackbar({buttonText: '关闭', message: '开源版本，无短信接口'});
+  automsg({buttonText: '关闭', message: "错误"}); //automsg({buttonText: '关闭', message: '开源版本，无短信接口'});
 }
 //升级账号//弹出窗口
 function openWindow_UN() {
@@ -196,6 +196,6 @@ function updataInfo() {
   };
 
   AjaxFn("/my/set/userinfo", data, function (res) {
-    mdui.snackbar(res.status);
+    automsg(res.status);
   });
 }

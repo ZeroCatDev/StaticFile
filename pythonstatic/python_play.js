@@ -29,7 +29,7 @@ function getWork() {
     if ("ok" == r.status) {
       show_python_work(r.work);
     } else {
-      mdui.snackbar(r.msg);
+      automsg(r.msg);
     }
   });
 }
@@ -85,7 +85,7 @@ function show_python_work(work) {
       if ("ok" == r.status) {
         show_python_userinfo(r.info);
       } else {
-        mdui.snackbar(r.msg);
+        automsg(r.msg);
       }
     }
   );

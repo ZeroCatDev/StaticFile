@@ -4,9 +4,9 @@ function showTEXT(txt,title){//显示说明与描述
 	layer.alert(txt,{title:title,shadeClose:true})
 }
 function like(){//点赞
-	if (!isLogin){ mdui.snackbar({buttonText: '关闭', message: '请先登录'}); return; }
+	if (!isLogin){ automsg({buttonText: '关闭', message: '请先登录'}); return; }
 	AjaxFn('/scratch/play/like', {pid:_pid},function (res) {
-		mdui.snackbar(res['msg']);
+		automsg(res['msg']);
 		if ('1' == res['status']){
 			like_count += 1;
 			if (res['opt']==1){
@@ -19,9 +19,9 @@ function like(){//点赞
 	});
 };
 function favo(){//收藏
-	if (!isLogin){ mdui.snackbar({buttonText: '关闭', message: '请先登录'}); return; }
+	if (!isLogin){ automsg({buttonText: '关闭', message: '请先登录'}); return; }
 	AjaxFn('/scratch/play/favo', {pid:_pid},function (res) {
-		mdui.snackbar(res['msg']);
+		automsg(res['msg']);
 		if ('1' == res['status']){
 			favo_count = favo_count + res['opt'];
 			if (res['opt']==1){
@@ -61,10 +61,10 @@ $(window).load(function () {
 });
 var clipboard = new ClipboardJS('.copylink');
 clipboard.on('success', function (e) {
-	mdui.snackbar({buttonText: '关闭', message: '复制成功'})
+	automsg({buttonText: '关闭', message: '复制成功'})
 });
 clipboard.on('error', function (e) {
-	mdui.snackbar({buttonText: '关闭', message: '当前浏览器不支持此功能'})
+	automsg({buttonText: '关闭', message: '当前浏览器不支持此功能'})
 });
 //生成分享二维码
 var cosId = $('#proid').val();

@@ -40,8 +40,8 @@
 //};
 //获取验证码
 //function getYZM(obj) {
-//	//mdui.snackbar({buttonText: '关闭', message: '开源版本，无短信接口'});
-//    mdui.snackbar({buttonText: '关闭', message: '错误'});
+//	//automsg({buttonText: '关闭', message: '开源版本，无短信接口'});
+//    automsg({buttonText: '关闭', message: '错误'});
 //};
 
 function onloadCallback() {
@@ -56,7 +56,7 @@ function getPW() {
   var un = $("#getPW_username").val();
   if (!emailTest(un)) {
     $("#getPW_username").focus();
-    mdui.snackbar({ buttonText: "关闭", message: "邮箱格式不正确" });
+    automsg({ buttonText: "关闭", message: "邮箱格式不正确" });
     return;
   }
   var re = grecaptcha.getResponse();
@@ -64,37 +64,37 @@ function getPW() {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
-      mdui.snackbar(res.status);
+      automsg(res.status);
     }
   });
-  mdui.snackbar({ buttonText: "关闭", message: "请查看邮箱" });
+  automsg({ buttonText: "关闭", message: "请查看邮箱" });
 }
 
 //注册界面，点击注册按钮
 function register() {
   if (!document.getElementById("privacy-chick").checked) {
-    mdui.snackbar({
+    automsg({
       buttonText: "关闭",
       message: "请阅读并选择是否同意隐私策略",
     });
     return;
   }
   if (!document.getElementById("shuju-chick").checked) {
-    mdui.snackbar({
+    automsg({
       buttonText: "关闭",
       message: "请阅读并选择是否同意数据跨境传输策略",
     });
     return;
   }
   if (!document.getElementById("xiugai-chick").checked) {
-    mdui.snackbar({
+    automsg({
       buttonText: "关闭",
       message: "请阅读并选择是否同意修改免责条款",
     });
     return;
   }
   if (!document.getElementById("zhunze-chick").checked) {
-    mdui.snackbar({
+    automsg({
       buttonText: "关闭",
       message: "请阅读并选择是否同意社区行为准则",
     });
@@ -103,20 +103,20 @@ function register() {
   var un = $("#reg_username").val();
   if (!usernameTest(un)) {
     $("#reg_username").focus();
-    mdui.snackbar({ buttonText: "关闭", message: "账号格式：字母+数字" });
+    automsg({ buttonText: "关闭", message: "账号格式：字母+数字" });
     return;
   }
-  //if (phoneTest(un)) {$("#reg_username").focus();mdui.snackbar({buttonText: '关闭', message: '手机号不能直接用于注册账号'});return;}
+  //if (phoneTest(un)) {$("#reg_username").focus();automsg({buttonText: '关闭', message: '手机号不能直接用于注册账号'});return;}
 
   var pw = $("#reg_password").val();
-  //if (!userpwdTest(pw)) {$("#reg_password").focus();mdui.snackbar({buttonText: '关闭', message: '密码格式:6~16长度,数字+字母+!@#$%^&*'});return;}
+  //if (!userpwdTest(pw)) {$("#reg_password").focus();automsg({buttonText: '关闭', message: '密码格式:6~16长度,数字+字母+!@#$%^&*'});return;}
 
   var re = grecaptcha.getResponse();
   AjaxFn("/user/register", { un: un, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
-      mdui.snackbar(res.status);
+      automsg(res.status);
     }
   });
 }
@@ -126,7 +126,7 @@ function login() {
   var un = $("#username").val();
   if (!emailTest(un)) {
     $("#username").focus();
-    mdui.snackbar({
+    automsg({
       message: "请填写正确的账号：字母+数字",
       type: "error",
       showCloseButton: true,
@@ -135,13 +135,13 @@ function login() {
   }
 
   var pw = $("#password").val();
-  //if (!userpwdTest(pw)) { $("#password").focus(); mdui.snackbar({ buttonText: "关闭", message: "密码不正确" }); return; }
+  //if (!userpwdTest(pw)) { $("#password").focus(); automsg({ buttonText: "关闭", message: "密码不正确" }); return; }
   var re = grecaptcha.getResponse();
   AjaxFn("/user/login", { un: un, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
-      mdui.snackbar(res.status);
+      automsg(res.status);
     }
   });
 }
@@ -157,7 +157,7 @@ function torepw() {
   var pw = $("#password").val();
   if (!userpwdTest(pw)) {
     $("#password").focus();
-    mdui.snackbar({ buttonText: "关闭", message: "密码格式不正确" });
+    automsg({ buttonText: "关闭", message: "密码格式不正确" });
     return;
   }
   var re = grecaptcha.getResponse();
@@ -165,7 +165,7 @@ function torepw() {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
-      mdui.snackbar(res.status);
+      automsg(res.status);
     }
   });
 }
