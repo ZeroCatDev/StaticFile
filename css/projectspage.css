@@ -1,0 +1,54 @@
+.card-media-covered {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.568), rgba(0, 0, 0, 0));
+}
+.card-media-covered-text {
+  font-size: 24px;
+  padding: 24px 16px 16px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.card-avatar {
+  float: left;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.card-user {
+  display: block;
+  margin-left: 52px;
+  line-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.card-user-name {
+  font-weight: 500;
+  font-size: 16px;
+  opacity: 0.87;
+}
+.card-user-motto {
+  font-weight: 400;
+  font-size: 14px;
+  opacity: 0.54;
+}
+.card-main {
+  padding: 24px 16px 16px 16px;
+}
+.card-main-text {
+  display: block;
+  font-size: 24px;
+  line-height: 36px;
+  opacity: 0.87;
+}
+.card-main-subtitle {
+  display: block;
+  font-size: 14px;
+  line-height: 24px;
+  opacity: 0.54;
+}
