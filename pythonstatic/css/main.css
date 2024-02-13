@@ -20205,7 +20205,7 @@ textarea {
   padding: 70px 10px 10px;
   color: white;
 }
-.python-run-result #mycanvas canvas:nth-child(2) {
+.python-run-result #pythoncanvas canvas:nth-child(2) {
   background-color: #fff;
 }
 #previewcanvas {

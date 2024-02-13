@@ -43,17 +43,11 @@ var _work_title = "";
 
 function show_python_userinfo(work) {
   console.log(work);
-  document.getElementById("authorname").innerHTML = work.nickname;
-  document.getElementById("authormotto").innerHTML = work.motto;
-  document.getElementById('touserurl').href = '/user?id=' + work.id;
-  document.getElementById('touserurl').onclick = function () { openuserpage ()};
-  function openuserpage () {
-    window.open('/user?id=' + work.id,"_self")
-  }
-  $("#authorimg").attr(
-    "src",
-    `/api/usertx?id=${work.id}`
-  ); //jq方式
+  document.querySelector('#authorinfo').setAttribute('headline', work.nickname);
+  document.querySelector('#authorinfo').setAttribute('description',work.motto);
+  document.querySelector('#authorinfo').setAttribute('href','/user?id=' + work.id);
+  document.querySelector('#authoravatar').setAttribute('src', `/api/usertx?id=${work.id}`);
+  
 }
 //用一个作品数据初始化界面
 function show_python_work(work) {
@@ -77,7 +71,23 @@ function show_python_work(work) {
   window.location.hash = work.id;
   document.getElementById("work_title").innerHTML = work.title;
   document.getElementById("work_update").innerHTML = `最后更新:${work.time}`;
+  console.log(work);
+  if (work.state=='0'){
+    document.querySelector('#projectstate').setAttribute('icon', 'lock_person');
+    document.querySelector('#projectstate').innerHTML='未分享'
 
+  }
+  else if (work.state=='1'){
+    document.querySelector('#projectstate').setAttribute('icon', 'share');
+    document.querySelector('#projectstate').innerHTML='公开作品'
+
+  }
+  
+  else if (work.state=='2'){
+    document.querySelector('#projectstate').setAttribute('icon', 'star');
+    document.querySelector('#projectstate').innerHTML='优秀作品'
+
+  }
   AjaxFn(
     `/api/getuserinfo?id=${work.authorid}`,
     { id: work.authorid },
@@ -119,7 +129,7 @@ function run_it() {
   Sk.pre = "output";
   Sk.configure({ output: outf, read: builtinRead });
 
-  (Sk.TurtleGraphics || (Sk.TurtleGraphics = {}))["target"] = "mycanvas";
+  (Sk.TurtleGraphics || (Sk.TurtleGraphics = {}))["target"] = "pythoncanvas";
   var draw_ = Sk.misceval.asyncToPromise(function () {
     f();
     return Sk.importMainWithBody("<stdin>", ![], src, !![]);
@@ -135,7 +145,7 @@ function run_it() {
 // 清除运行结果
 function run_clear() {
   document.getElementById("output").innerHTML = "";
-  document.getElementById("mycanvas").innerHTML = "";
+  document.getElementById("pythoncanvas").innerHTML = "";
 }
 
 function f() {
@@ -143,15 +153,15 @@ function f() {
     var o = document.getElementById("canvas_box");
     var w = o.offsetWidth; //宽度
     var h = o.offsetHeight; //高度
-    $("#mycanvas").css("height", h + "px");
+    $("#pythoncanvas").css("height", h + "px");
 
     Sk.TurtleGraphics.width = w;
     Sk.TurtleGraphics.height = h;
 
-    var C1 = $("#mycanvas>canvas:eq(0)");
+    var C1 = $("#pythoncanvas>canvas:eq(0)");
     C1 = u(C1, w, h);
 
-    var C2 = $("#mycanvas>canvas:eq(1)");
+    var C2 = $("#pythoncanvas>canvas:eq(1)");
     C2 = u(C2, w, h);
   }
 }

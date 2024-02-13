@@ -7,10 +7,10 @@ webpackJsonp(["app/js/python-editor/index"], {
         function e() {
             if (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {}), document.documentElement.clientWidth < 991) {
                 window.editor.setSize(document.documentElement.clientWidth + "px", "300px"),
-                $("#mycanvas").css("height", "300px");
-                var n = $("#mycanvas>canvas:eq(0)");
+                $("#pythoncanvas").css("height", "300px");
+                var n = $("#pythoncanvas>canvas:eq(0)");
                 n = u(n, document.documentElement.clientWidth, 300);
-                var t = $("#mycanvas>canvas:eq(1)");
+                var t = $("#pythoncanvas>canvas:eq(1)");
                 t = u(t, document.documentElement.clientWidth, 300),
                 (0, a.isEmpty)(t) || t.css("margin-top", "-300px"),
                 $("#output").css("height", "200px"),
@@ -18,13 +18,13 @@ webpackJsonp(["app/js/python-editor/index"], {
                 window.Sk.TurtleGraphics.width = document.documentElement.clientWidth
             } else {
                 window.editor.setSize(document.documentElement.clientWidth / 2 + "px", document.documentElement.clientHeight - 42 + "px"),
-                $("#mycanvas").css("height", (document.documentElement.clientHeight - 42) / 2 + "px"),
+                $("#pythoncanvas").css("height", (document.documentElement.clientHeight - 42) / 2 + "px"),
                 $("#output").css("height", (document.documentElement.clientHeight - 42) / 2 + "px"),
                 window.Sk.TurtleGraphics.height = (document.documentElement.clientHeight - 42) / 2,
                 window.Sk.TurtleGraphics.width = document.documentElement.clientWidth / 2;
-                var r = $("#mycanvas>canvas:eq(0)");
+                var r = $("#pythoncanvas>canvas:eq(0)");
                 r = u(r, window.Sk.TurtleGraphics.width, window.Sk.TurtleGraphics.height);
-                var e = $("#mycanvas>canvas:eq(1)");
+                var e = $("#pythoncanvas>canvas:eq(1)");
                 e = u(e, window.Sk.TurtleGraphics.width, window.Sk.TurtleGraphics.height),
                 (0, a.isEmpty)(e) || e.css("margin-top", "-" + window.Sk.TurtleGraphics.height + "px")
             }
@@ -93,7 +93,7 @@ webpackJsonp(["app/js/python-editor/index"], {
             $(".python-run-result").show(),
             $(".python-run-result>.clear-btn").click(function() {
                 document.getElementById("output").innerHTML = "",
-                document.getElementById("mycanvas").innerHTML = ""
+                document.getElementById("pythoncanvas").innerHTML = ""
             }),
             $("body").click(function(n) {
                 if (n.target == $(".file-group")[0] || n.target == $("img.file-icon")[0]) return ! 1;
@@ -155,7 +155,7 @@ webpackJsonp(["app/js/python-editor/index"], {
                 output: window.outf,
                 read: window.builtinRead
             }),
-            (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = "mycanvas",
+            (window.Sk.TurtleGraphics || (window.Sk.TurtleGraphics = {})).target = "pythoncanvas",
             window.Sk.misceval.asyncToPromise(function() {
                 return window.Sk.importMainWithBody("<stdin>", !1, n, !0)
             }).then(function(n) {},

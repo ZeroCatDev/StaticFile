@@ -66,11 +66,6 @@ clipboard.on('success', function (e) {
 clipboard.on('error', function (e) {
 	automsg({buttonText: '关闭', message: '当前浏览器不支持此功能'})
 });
-//生成分享二维码
-var cosId = $('#proid').val();
-let _href = window.location.href;
-new QRCode(document.getElementById("qrcode"), _href);
-
 
 
 //------------------------------------------------------------------------------------

@@ -249,7 +249,7 @@ function run_it() {
   Sk.pre = "output";
   Sk.configure({ output: outf, read: builtinRead });
 
-  (Sk.TurtleGraphics || (Sk.TurtleGraphics = {}))["target"] = "mycanvas";
+  (Sk.TurtleGraphics || (Sk.TurtleGraphics = {}))["target"] = "pythoncanvas";
   var draw_ = Sk.misceval.asyncToPromise(function () {
     f();
     return Sk.importMainWithBody("<stdin>", ![], src, !![]);
@@ -265,7 +265,7 @@ function run_it() {
 // 清除运行结果
 function run_clear() {
   document.getElementById("output").innerHTML = "";
-  document.getElementById("mycanvas").innerHTML = "";
+  document.getElementById("pythoncanvas").innerHTML = "";
 }
 
 function f() {
@@ -273,15 +273,15 @@ function f() {
     var o = document.getElementById("canvas_box");
     var w = o.offsetWidth; //宽度
     var h = o.offsetHeight; //高度
-    $("#mycanvas").css("height", h + "px");
+    $("#pythoncanvas").css("height", h + "px");
 
     Sk.TurtleGraphics.width = w;
     Sk.TurtleGraphics.height = h;
 
-    var C1 = $("#mycanvas>canvas:eq(0)");
+    var C1 = $("#pythoncanvas>canvas:eq(0)");
     C1 = u(C1, w, h);
 
-    var C2 = $("#mycanvas>canvas:eq(1)");
+    var C2 = $("#pythoncanvas>canvas:eq(1)");
     C2 = u(C2, w, h);
   }
 }
@@ -301,7 +301,7 @@ var not_all_screen = `
   <div class="layui-row">
     <div class="layui-col-md12 layui-col-sm6 layui-col-xs12" style="padding: 0;">
       <div id="canvas_box" style="height:calc(50vh); background:url(png) no-repeat center;background-size: contain;background-size:auto 100%;">
-        <div id="mycanvas"></div>    
+        <div id="pythoncanvas"></div>    
       </div>
     </div>
 
@@ -314,7 +314,7 @@ var not_all_screen = `
 var all_screen = `
   <div class="layui-col-md12 layui-col-sm12 layui-col-xs12" style="padding: 0;">
   <div id="canvas_box" style="height:calc(100vh - 52px); background:url(png) no-repeat center;background-size: contain;background-size:auto 100%;">
-    <div id="mycanvas"></div>    
+    <div id="pythoncanvas"></div>    
   </div>
 </div>
 
