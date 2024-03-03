@@ -301,7 +301,7 @@ return assetUrlParts.join('');
 };
 //项目资源文件下载URL
 function getAssetUrl(asset) {
-var assetUrlParts = [qiniuurl+'/material/asset/', asset.assetId, '.', asset.dataFormat];
+var assetUrlParts = [S3staticurl+'/material/asset/', asset.assetId, '.', asset.dataFormat];
 return assetUrlParts.join('');
 };
 
