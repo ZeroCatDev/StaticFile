@@ -17,7 +17,27 @@ editor.setOption("theme", "solarized dark");
 editor.setOption("mode", "python");
 editor.setValue($("#code_textarea").val());
 window.CodeMirror = CodeMirror;
-
+function FormatTime(t,date){
+  var date=new Date(date);
+  var o = {   
+      "M+" : date.getMonth()+1,                 //月份
+      "d+" : date.getDate(),                    //日
+      "h+" : date.getHours(),                   //小时
+      "m+" : date.getMinutes(),                 //分
+      "s+" : date.getSeconds(),                 //秒
+      "q+" : Math.floor((date.getMonth()+3)/3), //季度
+      "S"  : date.getMilliseconds()             //毫秒
+  };   
+  if(/(y+)/.test(t)){
+      t=t.replace(RegExp.$1,(date.getFullYear()+"").substr(4-RegExp.$1.length)); 
+  };    
+  for(var k in o){
+      if(new RegExp("("+ k +")").test(t)){
+          t=t.replace(RegExp.$1,(RegExp.$1.length==1)?(o[k]):(("00"+ o[k]).substr((""+o[k]).length))); 
+      }; 
+  }
+  return t; 
+};
 function getQueryString(name) {
   const url_string = window.location.href
   const url = new URL(url_string);
@@ -46,7 +66,7 @@ function show_python_userinfo(work) {
   document.querySelector('#authorinfo').setAttribute('headline', work.nickname);
   document.querySelector('#authorinfo').setAttribute('description',work.motto);
   document.querySelector('#authorinfo').setAttribute('href','/user?id=' + work.id);
-  document.querySelector('#authoravatar').setAttribute('src', `/api/usertx?id=${work.id}`);
+  document.querySelector('#authoravatar').setAttribute('src', S3staticurl+'/user/'+work.images+'.png');
   
 }
 //用一个作品数据初始化界面
@@ -69,23 +89,26 @@ function show_python_work(work) {
   //清除各类状态
   run_clear(); //清除运行结果
   window.location.hash = work.id;
-  document.getElementById("work_title").innerHTML = work.title;
-  document.getElementById("work_update").innerHTML = `最后更新:${work.time}`;
+  document.getElementById("work_title").innerText = work.title;
+  document.getElementById("work_update").innerText = `最后更新:${FormatTime('yyyy-MM-dd hh:mm:ss',work.time)}`;
+  document.getElementById("view_count").innerText = `浏览量:${work.view_count}`;
+  document.getElementById("description").innerText = `${work.description}`;
+
   console.log(work);
   if (work.state=='0'){
     document.querySelector('#projectstate').setAttribute('icon', 'lock_person');
-    document.querySelector('#projectstate').innerHTML='未分享'
+    document.querySelector('#projectstate').innerText='未分享'
 
   }
   else if (work.state=='1'){
     document.querySelector('#projectstate').setAttribute('icon', 'share');
-    document.querySelector('#projectstate').innerHTML='公开作品'
+    document.querySelector('#projectstate').innerText='公开作品'
 
   }
   
   else if (work.state=='2'){
     document.querySelector('#projectstate').setAttribute('icon', 'star');
-    document.querySelector('#projectstate').innerHTML='优秀作品'
+    document.querySelector('#projectstate').innerText='优秀作品'
 
   }
   AjaxFn(
@@ -109,7 +132,7 @@ function show_python_work(work) {
 // 运行部分
 function outf(H) {
   var t = document.getElementById("output");
-  t.innerHTML = t.innerHTML + H;
+  t.innerText = t.innerText + H;
 }
 // 运行部分
 function tocode() {
@@ -125,7 +148,7 @@ function run_it() {
   src = window.editor.getValue();
 
   var OP_Div = document.getElementById("output");
-  OP_Div.innerHTML = "";
+  OP_Div.innerText = "";
   Sk.pre = "output";
   Sk.configure({ output: outf, read: builtinRead });
 
@@ -144,8 +167,8 @@ function run_it() {
 
 // 清除运行结果
 function run_clear() {
-  document.getElementById("output").innerHTML = "";
-  document.getElementById("pythoncanvas").innerHTML = "";
+  document.getElementById("output").innerText = "";
+  document.getElementById("pythoncanvas").innerText = "";
 }
 
 function f() {
