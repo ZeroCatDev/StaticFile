@@ -55,7 +55,7 @@ $('.green-flag-box').click(function(){
     window.focus();
 });
 //复制地址功能
-$(window).load(function () {
+$(window).on('load',function() {
 	var pageUrl = window.location.href;
 	$('.copylink').attr('data-clipboard-text', pageUrl);
 });
