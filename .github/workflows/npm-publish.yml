@@ -29,7 +29,7 @@ jobs:
                                       # defaulting to a patch bump.
           rc-wording:     'rc-wording'
       - run: git config --global user.email "sun@wuyuan.dev"
-      - run: git config --global user.name "SunWuyuan"
+      - run: git config --global user.name "wydev"
       - run: npm i
       - run: npm version patch
       - run: npm publish
