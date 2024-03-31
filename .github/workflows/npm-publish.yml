@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
           registry-url: https://registry.npmjs.org/
 
       - name:  'Automated Version Bump'
@@ -33,6 +33,7 @@ jobs:
       - run: npm cache clean --force
       - run: npm i
       - run: npm version patch
+      - run: npm config get registry
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
