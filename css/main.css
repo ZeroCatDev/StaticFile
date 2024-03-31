@@ -19,7 +19,7 @@
     background-position: center;
     background-size: cover;
 	background-attachment: fixed;
-	background-image: url("https://registry.npmmirror.com/ourworldstaticfile/latest/files/img/web/sybj.jpg");
+	background-image: url("https://registry.npmmirror.com/owstatic/latest/files/img/web/sybj.jpg");
 }
 #top_overlay {
     position: absolute;
@@ -191,4 +191,7 @@
     display: flex;
     justify-content: center!important;
     text-align: center;
+}
+.background-color{
+    background-color: rgb(var(--mdui-color-secondary-container));
 }
