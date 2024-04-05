@@ -388,7 +388,7 @@ function open_YX() {
 
  <div class="mdui-card-header" >
     <img class="mdui-card-header-avatar" src="${S3staticurl}/user/${p.authorid}.png"/>
-    <div class="mdui-card-header-title">${p.author_nickname}</div>
+    <div class="mdui-card-header-title">${p.author_display_name}</div>
     <div class="mdui-card-header-subtitle">OurWorld创作者</div>
   </div>
 <div class="mdui-card-primary">

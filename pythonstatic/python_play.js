@@ -63,7 +63,7 @@ var _work_title = "";
 
 function show_python_userinfo(work) {
   console.log(work);
-  document.querySelector('#authorinfo').setAttribute('headline', work.nickname);
+  document.querySelector('#authorinfo').setAttribute('headline', work.display_name);
   document.querySelector('#authorinfo').setAttribute('description',work.motto);
   document.querySelector('#authorinfo').setAttribute('href','/user?id=' + work.id);
   document.querySelector('#authoravatar').setAttribute('src', S3staticurl+'/user/'+work.images+'.png');

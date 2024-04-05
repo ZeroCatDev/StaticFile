@@ -6,8 +6,8 @@ var _table_render = table.render({
     , toolbar: '#TableOne_bar'
     , page: true
     , cols: [[
-        { field: 'username', width: 120, title: '账号' }
-        , { field: 'nickname', title: '昵称' }
+        { field: 'email', width: 120, title: '账号' }
+        , { field: 'display_name', title: '昵称' }
         , { title: '作品查看', width: 100, align: "center", templet: "#tyTpl",event:'see_works'}
         , { title: '课程查看', width: 100, align: "center", templet: "#tyTpl",event:"see_course"}
         , { field: 'regTime', width: 180, title: '注册时间' }
@@ -35,7 +35,7 @@ table.on('toolbar(TableOne)', function (obj) {
         });
     } else if (obj.event === 'new') {
         layer.prompt({title:'添加新用户',formType:0, maxlength: 16,shadeClose:true}, function (v, index) {
-            if (!usernameTest(v)) {
+            if (!emailTest(v)) {
                 layer.msg({buttonText: '关闭', message: '账号格式不正确'});
                 return;
             }
@@ -64,15 +64,15 @@ table.on('toolbar(TableOne)', function (obj) {
 });
 //监听行工具事件
 table.on('tool(TableOne)', function (obj) {
-    if (obj.event === 'setpwd') {
-        var vv = obj.data.username.substring(obj.data.username.length-6);
-        layer.prompt({title:obj.data.username+'密码重置',value:vv,formType:0, maxlength: 12,shadeClose:true}, function (v, index) {
-            if (!userpwdTest(v)) {
+    if (obj.event === 'setpassword') {
+        var vv = obj.data.email.substring(obj.data.email.length-6);
+        layer.prompt({title:obj.data.email+'密码重置',value:vv,formType:0, maxlength: 12,shadeClose:true}, function (v, index) {
+            if (!userpasswordTest(v)) {
                 layer.msg({buttonText: '关闭', message: '密码格式不正确'});
                 return;
             }
 
-            AjaxFn('/admin/user_setpwd', {'un': obj.data.username,'pw':v }, function (res){
+            AjaxFn('/admin/user_setpassword', {'un': obj.data.email,'pw':v }, function (res){
                 layer.msg(res['msg']);
                 if ('success' == res['status']){
                     layer.close(index);

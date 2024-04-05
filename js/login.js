@@ -53,9 +53,9 @@ grecaptcha.render("#recaptcha-div-login-page", {
 
 //找回密码
 function getPW() {
-  var un = $("#getPW_username").val();
+  var un = $("#getPW_email").val();
   if (!emailTest(un)) {
-    $("#getPW_username").focus();
+    $("#getPW_email").focus();
     automsg({ buttonText: "关闭", message: "邮箱格式不正确" });
     return;
   }
@@ -100,16 +100,16 @@ function register() {
     });
     return;
   }
-  var un = $("#reg_username").val();
-  if (!usernameTest(un)) {
-    $("#reg_username").focus();
+  var un = $("#reg_email").val();
+  if (!emailTest(un)) {
+    $("#reg_email").focus();
     automsg({ buttonText: "关闭", message: "账号格式：字母+数字" });
     return;
   }
-  //if (phoneTest(un)) {$("#reg_username").focus();automsg({buttonText: '关闭', message: '手机号不能直接用于注册账号'});return;}
+  //if (phoneTest(un)) {$("#reg_email").focus();automsg({buttonText: '关闭', message: '手机号不能直接用于注册账号'});return;}
 
   var pw = $("#reg_password").val();
-  //if (!userpwdTest(pw)) {$("#reg_password").focus();automsg({buttonText: '关闭', message: '密码格式:6~16长度,数字+字母+!@#$%^&*'});return;}
+  //if (!userpasswordTest(pw)) {$("#reg_password").focus();automsg({buttonText: '关闭', message: '密码格式:6~16长度,数字+字母+!@#$%^&*'});return;}
 
   var re = grecaptcha.getResponse();
   AjaxFn("/user/register", { un: un, pw: pw, re: re }, function (res) {
@@ -123,9 +123,9 @@ function register() {
 
 //登录界面，点击登录按钮
 function login() {
-  var un = $("#username").val();
+  var un = $("#email").val();
   if (!emailTest(un)) {
-    $("#username").focus();
+    $("#email").focus();
     automsg({
       message: "请填写正确的账号：字母+数字",
       type: "error",
@@ -135,7 +135,7 @@ function login() {
   }
 
   var pw = $("#password").val();
-  //if (!userpwdTest(pw)) { $("#password").focus(); automsg({ buttonText: "关闭", message: "密码不正确" }); return; }
+  //if (!userpasswordTest(pw)) { $("#password").focus(); automsg({ buttonText: "关闭", message: "密码不正确" }); return; }
   var re = grecaptcha.getResponse();
   AjaxFn("/user/login", { un: un, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {
@@ -155,7 +155,7 @@ function torepw() {
   var token = getQueryString("token");
 
   var pw = $("#password").val();
-  if (!userpwdTest(pw)) {
+  if (!userpasswordTest(pw)) {
     $("#password").focus();
     automsg({ buttonText: "关闭", message: "密码格式不正确" });
     return;

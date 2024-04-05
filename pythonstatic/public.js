@@ -2,11 +2,11 @@ var phoneTest = function(No) {
     var reg = /^1[3456789]\d{9}$/;
     return reg['test'](No);
 };
-var usernameTest = function(pw) {
+var emailTest = function(pw) {
     var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
     return reg['test'](pw);
 };
-var userpwdTest = function(pw) {
+var userpasswordTest = function(pw) {
     var reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
     return reg['test'](pw);
 };

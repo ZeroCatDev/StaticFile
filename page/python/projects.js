@@ -41,7 +41,7 @@ var laypage = layui.laypage, layer = layui.layer;
 							</div>
 						<div style="padding: 16px;">
 							<img class="card-avatar" src="/api/usertx?id=${d[i].authorid}" />
-							<div class="card-user card-user-name">${d[i].nickname}</div>
+							<div class="card-user card-user-name">${d[i].display_name}</div>
 							<div class="card-user card-user-motto">${d[i].view_count}浏览</div>
 						</div>
 					</mdui-card>
@@ -98,7 +98,7 @@ d[i].description = '暂无简介'
 							</div>
 						<div style="padding: 16px;">
 							<img class="card-avatar" src="/api/usertx?id=${d[i].authorid}" />
-							<div class="card-user card-user-name">${d[i].nickname}</div>
+							<div class="card-user card-user-name">${d[i].display_name}</div>
 							<div class="card-user card-user-motto">${d[i].view_count}浏览</div>
 						</div>
 					</mdui-card>

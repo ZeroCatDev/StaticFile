@@ -5,8 +5,8 @@ var _table_render = table.render({
     , toolbar: '#TableOne_bar'
     , page: true
     , cols: [[
-        { field: 'username', width: 120, title: '作者' }
-        , { field: 'nickname', width: 150, title: '作者昵称' }
+        { field: 'email', width: 120, title: '作者' }
+        , { field: 'display_name', width: 150, title: '作者昵称' }
         , { field: 'title', title: '作品名' }
         , { field: 'time', width: 180, title: '修改时间', templet: "#timeTemp"}
         , { title: '操作', width:520, toolbar: '#TableOne_tool'}
@@ -29,7 +29,7 @@ table.on('toolbar(TableOne)', function (obj) {
             _table_render.reload({where: {w:obj.event, v:v},page: {curr: 1}});
             layer.close(index);
         });
-    } else if (obj.event === 'search_nickname') {
+    } else if (obj.event === 'search_display_name') {
         layer.prompt({title:'请输入查找的作者昵称',formType:0, maxlength: 32,shadeClose:true}, function (v, index) {
             _table_render.reload({where: {w:obj.event, v:v},page: {curr: 1}});
             layer.close(index);

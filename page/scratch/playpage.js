@@ -5,7 +5,7 @@ function projectanalysis() {
   var option;
   var h = {
     context: getHead(JSON.parse(projectjson)),
-    info: "<%= project.author_nickname %> 的作品 <%= project.title %> 的分析",
+    info: "<%= project.author_display_name %> 的作品 <%= project.title %> 的分析",
     infotext: getStats(JSON.parse(projectjson)),
   };
   console.log(h);
@@ -135,7 +135,8 @@ function getprojectinfo() {
   $.getJSON(
     "/scratch/projectinfo?id=" + getQueryString("id"),
     function (result) {
-      document.querySelector("#authorinfo").headline = result.author_nickname;
+      document.querySelector("#authorinfo").headline =
+        result.author_display_name;
       document.querySelector("#authorinfo").description = result.author_motto;
       document.querySelector("#authorinfo").href = "/user?id=" + result.id;
       document.querySelector("#authoravatar").src =
@@ -161,10 +162,9 @@ function getprojectinfo() {
         document.querySelector("#projectstate").setAttribute("icon", "star");
         document.querySelector("#projectstate").innerText = "优秀作品";
       }
-      console.log('成功获取作品信息');
+      console.log("成功获取作品信息");
       console.log(result);
     }
-    
   );
 }
 $(function () {

@@ -30,7 +30,7 @@ function loaduserinfo() {
     $.getJSON("/api/getuserinfo?id="+getQueryString('id'), function(data){
      
         console.log(data.info);
-        $("#mainusernickname").html(DOMPurify.sanitize(data.info.nickname));
+        $("#mainuserdisplay_name").html(DOMPurify.sanitize(data.info.display_name));
 
         $("#usermotto").html(DOMPurify.sanitize(marked.parse(data.info.motto)));
         $("#mainuserimages").attr('src',S3staticurl+'/user/'+data.info.images+'.png');

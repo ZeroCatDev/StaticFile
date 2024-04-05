@@ -21,12 +21,12 @@ var phoneTest = function (No) {
   var reg = /^1[3456789]\d{9}$/;
   return reg["test"](No);
 };
-var usernameTest = function (pw) {
+var emailTest = function (pw) {
   var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
   return reg["test"](pw);
 };
 
-var userpwdTest = function (pw) {
+var userpasswordTest = function (pw) {
   var reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/  ;
   return reg["test"](pw);
 };
@@ -63,12 +63,12 @@ var numberTest = function (v) {
 function updatePassword() {
   (oldPW = $("#old_password").val()), (newPW = $("#new_password").val());
 
-  if (!userpwdTest(oldPW)) {
+  if (!userpasswordTest(oldPW)) {
     $("#old_password").focus();
     automsg({buttonText: '关闭', message: "原密码格式错误1"});
     return;
   }
-  if (!userpwdTest(newPW)) {
+  if (!userpasswordTest(newPW)) {
     $("#new_password").focus();
     automsg({buttonText: '关闭', message: "新密码格式错误2"});
     return;
@@ -131,15 +131,15 @@ function get_yzm(obj) {
 //判断参数并上传到服务器
 function updateUsername() {
   var pw = $("#old_password").val();
-  if (!userpwdTest(pw)) {
+  if (!userpasswordTest(pw)) {
     $("#old_password").focus();
     automsg({buttonText: '关闭', message: "密码格式:6~16长度,数字+字母+!@#$%^&*"});
     return;
   }
 
-  var un = $("#new_username").val();
+  var un = $("#new_email").val();
   if (!phoneTest(un)) {
-    $("#new_username").focus();
+    $("#new_email").focus();
     automsg({buttonText: '关闭', message: "手机号格式不正确"});
     return;
   }
@@ -167,7 +167,7 @@ function openWindow_UN() {
     area: ["320px", "380px"],
     content: `<div style="margin:12px">
 			<input class="layui-input"id='old_password' type="text"  placeholder="账号密码">
-			<input class="layui-input" id='new_username' type="text" maxlength="11" placeholder="手机号" style="margin:28px 0" >
+			<input class="layui-input" id='new_email' type="text" maxlength="11" placeholder="手机号" style="margin:28px 0" >
 			<div style="display:flex">
 				<input class="layui-input" id='yzm_input' style="width: 100%;margin-right: 0;" type="text" maxlength="6" placeholder="短信验证码">
 				<button class="layui-btn layui-btn-danger" onclick="get_yzm(this)" type="button"  style="border-radius: 0;margin:0;padding: 0; width: 12em; height: 40px;">获取验证码</button>
@@ -179,15 +179,15 @@ function openWindow_UN() {
 
 //修改昵称等信息
 function updataInfo() {
-  var nickname = $("#my_nickname")["val"]();
-  if ("" == nickname || nickname.length > 16) {
-    $("#my_nickname")["focus"]();
+  var display_name = $("#my_display_name")["val"]();
+  if ("" == display_name || display_name.length > 16) {
+    $("#my_display_name")["focus"]();
     layer["msg"]("昵称长度不正确");
     return;
   }
 
   var data = {
-    nickname: nickname,
+    display_name: display_name,
     sex:$("#sex-chick").val(),
     year: $("#sel_year")["val"](),
     month: $("#sel_month")["val"](),
