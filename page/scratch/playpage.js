@@ -1,3 +1,5 @@
+_pid = getQueryString('id');
+
 socialShare(".social-share", $config);
 function projectanalysis() {
   var chartDom = document.getElementById("main1");
@@ -132,13 +134,15 @@ function getQueryString(name) {
   return url.searchParams.get(name);
 }
 function getprojectinfo() {
-  $.getJSON(
-    "/scratch/projectinfo?id=" + getQueryString("id"),
-    function (result) {
-      document.querySelector("#authorinfo").headline =
+  _pid = getQueryString('id');
+  AjaxGet("http://localhost:3000/scratch/projectinfo?id="+ getQueryString("id"), {}, function (result) {
+	
+  document.querySelector("#authorinfo").headline =
         result.author_display_name;
       document.querySelector("#authorinfo").description = result.author_motto;
       document.querySelector("#authorinfo").href = "/user?id=" + result.id;
+      document.querySelector("#editlink").href = "/scratch/edit.html#" + result.id;
+
       document.querySelector("#authoravatar").src =
         S3staticurl + "/user/" + result.author_images + ".png";
       document.querySelector("#projecttitle").innerText = result.title;
@@ -162,10 +166,13 @@ function getprojectinfo() {
         document.querySelector("#projectstate").setAttribute("icon", "star");
         document.querySelector("#projectstate").innerText = "优秀作品";
       }
+      like_count = result.like_count
+      favo_count = result.favo_count
       console.log("成功获取作品信息");
       console.log(result);
-    }
-  );
+     });
+
+ 
 }
 $(function () {
   getprojectinfo();

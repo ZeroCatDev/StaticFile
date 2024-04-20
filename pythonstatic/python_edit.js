@@ -8,7 +8,7 @@ var editor = monaco.editor.create(document.getElementById('container'), {
 
 //动态获取作品
 function getWork(hashWorkId) {
-  AjaxFn("/python/getWork", { id: hashWorkId }, function (r) {
+  AjaxFn("http://localhost:3000/python/getWork", { id: hashWorkId }, function (r) {
     if ("ok" == r.status) {
       show_python_work(r.work);
     } else {

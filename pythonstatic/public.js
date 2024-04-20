@@ -47,38 +47,3 @@ function AjaxFn(url, data, callbackFn) {
         }
     });
 }
-
-//微信分享时的签名
-function wx_sign(url,title,desc,imgUrl){
-	$.ajax({url: "/wx_sign",type: 'post',data: { url: url},
-		success: function (res) {
-			wx.config({
-				debug: false,
-				appId: res.appId,
-				timestamp: res.timestamp,
-				nonceStr: res.nonceStr,
-				signature: res.signature,
-				jsApiList: [
-                    "updateAppMessageShareData" ,
-                    "updateTimelineShareData",
-                ]
-            });
-			wx.ready(function () {
-				var shareData = {
-					title: title,
-					desc: desc,
-					link: url,
-                    imgUrl: 'https://ourworld.wuyuan.dev/'+imgUrl
-                };
-                //自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0）
-                wx.updateAppMessageShareData(shareData);
-                //自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1.4.0）
-				wx.updateTimelineShareData(shareData);
-            });
-            
-			wx.error(function (res) {
-				console.log(res.errMsg);  // 正式环境记得关闭啊！！！！
-			});
-		}
-    });
-}

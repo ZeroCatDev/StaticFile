@@ -30,22 +30,36 @@ function FormatTime(t, date) {
   }
   return t;
 }
+var scratch_count = 0;
+var python_count = 0;
+function loaduserinfo(load) {
 
-function loaduserinfo() {
-  $.getJSON("/api/getuserinfo?id=" + getQueryString("id"), function (data) {
-    console.log(data.info);
-    $("#mainuserdisplay_name").html(DOMPurify.sanitize(data.info.display_name));
-
-    $("#usermotto").html(DOMPurify.sanitize(marked.parse(data.info.motto)));
-    $("#mainuserimages").attr(
-      "src",
-      S3staticurl + "/user/" + data.info.images 
-    );
-    $("#regTime").html(FormatTime("yyyy-MM-dd", data.info.regTime) + "注册");
-    $("#tag").html(data.info.tag);
-  });
+    AjaxGet("http://localhost:3000/api/getuserinfo?id=" + getQueryString("id"), {}, function (data) {
+      console.log(data.info);
+      $("#mainuserdisplay_name").html(DOMPurify.sanitize(data.info.display_name));
+  
+      $("#usermotto").html(DOMPurify.sanitize(marked.parse(data.info.motto)));
+      $("#mainuserimages").attr(
+        "src",
+        S3staticurl + "/user/" + data.info.images 
+      );
+      $("#regTime").html(FormatTime("yyyy-MM-dd", data.info.regTime) + "注册");
+      $("#tag").html(data.info.tag);
+      scratch_count = data.info.scratch_count,
+      python_count = data.info.python_count
+      load()
+        });
+      
+  
 }
 
+$(function () {
+  loaduserinfo(function () {
+    Scratch();
+    Python();
+
+  }
+  );});
 var laypage = layui.laypage,
   layer = layui.layer;
 
@@ -58,43 +72,39 @@ function Scratch() {
     layout: ["count", "prev", "page", "next", "limit", "refresh", "skip"],
     limits: [8, 16, 32],
     jump: function (obj, first) {
-      $.ajax({
-        url: "/api/getUserScratchProjects",
-        type: "POST",
-        data: {
-          curr: obj.curr,
-          limit: obj.limit,
-          userid: getQueryString("id"),
-        },
-        success: function (d) {
-          if (d.length) {
-            $("#scratch_projects").html("");
-            for (var i = 0; i < d.length; i++) {
-              tzzt = "";
-              if (d[i].state == 2) {
-                tzzt = '<mdui-icon name="star"></mdui-icon>';
-              }
-              $("#scratch_projects").append(`
-  								<div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
-  <mdui-card variant="outlined" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden" href="/scratch/play?id=${d[i].id}">
-
-  		<img src="${S3staticurl}/scratch_slt/${d[i].id}"
-  			style="pointer-events: none;width: 100%;" />
-  		<div class="card-media-covered">
-  				<div class="card-media-covered-text">${tzzt}${d[i].title}</div>
-  		</div>
-  </mdui-card>
-  </div>
-  						`);
+      AjaxFn("http://localhost:3000/api/getUserScratchProjects",{
+        curr: obj.curr,
+        limit: obj.limit,
+        userid: getQueryString("id"),
+      },function (d) {
+        if (d.length) {
+          $("#scratch_projects").html("");
+          for (var i = 0; i < d.length; i++) {
+            tzzt = "";
+            if (d[i].state == 2) {
+              tzzt = '<mdui-icon name="star"></mdui-icon>';
             }
-          } else {
-            $("#scratch_projects").html(
-              `<p class="mdui-text-center">没有找到Scratch作品</p>`
-            );
-            automsg({ buttonText: "关闭", message: "无满足条件的作品" });
+            $("#scratch_projects").append(`
+                <div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
+<mdui-card variant="outlined" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden" href="/scratch/play?id=${d[i].id}">
+
+    <img src="${S3staticurl}/scratch_slt/${d[i].id}"
+      style="pointer-events: none;width: 100%;" />
+    <div class="card-media-covered">
+        <div class="card-media-covered-text">${tzzt}${d[i].title}</div>
+    </div>
+</mdui-card>
+</div>
+            `);
           }
-        },
-      });
+        } else {
+          $("#scratch_projects").html(
+            `<p class="mdui-text-center">没有找到Scratch作品</p>`
+          );
+          automsg({ buttonText: "关闭", message: "无满足条件的作品" });
+        }        
+      })
+
     },
   });
 }
@@ -107,51 +117,40 @@ function Python() {
     layout: ["count", "prev", "page", "next", "limit", "refresh", "skip"],
     limits: [8, 16, 32],
     jump: function (obj, first) {
-      $.ajax({
-        url: "/api/getUserPythonProjects",
-        type: "POST",
-        data: {
-          curr: obj.curr,
-          limit: obj.limit,
-          userid: getQueryString("id"),
-        },
-        success: function (d) {
-          if (d.length) {
-            $("#python_projects").html("");
-            for (var i = 0; i < d.length; i++) {
-              tzzt = "";
-              if (d[i].state == 2) {
-                tzzt = '<mdui-icon name="star"></mdui-icon>';
-              }
-              $("#python_projects")
-                .append(`<div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
-  					<mdui-card variant="outlined" href='/python/play?id=${d[i].id}' clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
-  						<div class="card-main">
-  								<div class="substr card-main-text" >${tzzt}${d[i].title}</div>
-  								<div class="substr card-main-subtitle">${d[i].description}</div>
-  							</div>
-  					</mdui-card>
-  					</div>
-  						`);
-            }
-          } else {
-            $("#python_projects").html(
-              `<p class="mdui-text-center">没有找到Python作品</p>`
-            );
-
-            automsg({ buttonText: "关闭", message: "无满足条件的作品" });
+      AjaxFn("http://localhost:3000/api/getUserPythonProjects", {
+        curr: obj.curr,
+        limit: obj.limit,
+        userid: getQueryString("id"),
+      },function(d){ if (d.length) {
+        $("#python_projects").html("");
+        for (var i = 0; i < d.length; i++) {
+          tzzt = "";
+          if (d[i].state == 2) {
+            tzzt = '<mdui-icon name="star"></mdui-icon>';
           }
-        },
-      });
+          $("#python_projects")
+            .append(`<div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
+        <mdui-card variant="outlined" href='/python/play?id=${d[i].id}' clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
+          <div class="card-main">
+              <div class="substr card-main-text" >${tzzt}${d[i].title}</div>
+              <div class="substr card-main-subtitle">${d[i].description}</div>
+            </div>
+        </mdui-card>
+        </div>
+          `);
+        }
+      } else {
+        $("#python_projects").html(
+          `<p class="mdui-text-center">没有找到Python作品</p>`
+        );
+
+        automsg({ buttonText: "关闭", message: "无满足条件的作品" });
+      }})
+
     },
   });
 }
 
-$(function () {
-  loaduserinfo();
-  Scratch();
-  Python();
-});
 
 function getQueryString(name) {
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");

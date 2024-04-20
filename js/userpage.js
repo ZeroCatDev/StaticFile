@@ -27,8 +27,7 @@ function getQueryString(name) {
 };
 
 function loaduserinfo() {
-    $.getJSON("/api/getuserinfo?id="+getQueryString('id'), function(data){
-     
+    AjaxGet("http://localhost:3000/api/getuserinfo?id="+getQueryString('id'), {}, function (data) {
         console.log(data.info);
         $("#mainuserdisplay_name").html(DOMPurify.sanitize(data.info.display_name));
 
@@ -37,7 +36,8 @@ function loaduserinfo() {
         $("#regTime").html(FormatTime('yyyy-MM-dd',data.info.regTime)+'注册');
         $("#tag").html(data.info.tag);
 
-    });
+      });
+   
     }
     window.onload = loaduserinfo;
 

@@ -44,6 +44,7 @@ webpackJsonp(["app/js/python-editor/index"], {
         default.isEmpty(n) ? $("#yourcode").val(decodeURIComponent($("#yourcode").val())) : ($.removeCookie("tmp_python_code"), $("#yourcode").val(n))
         }
         function o(n) {
+            
             $.ajax({
                 url: n,
                 type: "GET",

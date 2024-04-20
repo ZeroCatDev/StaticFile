@@ -1,48 +1,3 @@
-//图片滑动验证
-//function doGeeTest(GT_CallBack){
-//    $.ajax({
-//        'url': ('/user/gt_slide?t=' + new Date().getTime()),
-//        'type': 'get',
-//        'dataType': 'json',
-//        'success': function (resD) {
-//            initGeetest({
-//                'gt': resD['gt'],
-//                'challenge': resD['challenge'],
-//                'offline': !resD['success'],
-//                'new_captcha': resD['new_captcha'],
-//                'product': 'bind',
-//                'width': '300px'
-//            }, GT_CallBack);
-//        }
-//    });
-//}
-//var _GT_Tag;
-//var GT_CallBack = function (GT_Tag) {
-//    _GT_Tag = GT_Tag
-//    GT_Tag['appendTo']('#captcha'),
-//    GT_Tag['onReady'](function () { $('#wait')['hide'](); });
-//};
-//doGeeTest(GT_CallBack);
-
-//定时器:设置按钮文本
-//var s = 60;
-//function Timer(tag) {
-//    if (0 == s) {
-//        s = 60
-//        $(tag).attr('disabled', !1);
-//        $(tag).text('获取验证码');
-//    } else {
-//        s--;
-//        $(tag).attr('disabled', !0);
-//        $(tag).text('重新发送(' + s + ')');
-//        setTimeout(function () { Timer(tag); }, 1000);
-//    }
-//};
-//获取验证码
-//function getYZM(obj) {
-//	//automsg({buttonText: '关闭', message: '开源版本，无短信接口'});
-//    automsg({buttonText: '关闭', message: '错误'});
-//};
 
 function onloadCallback() {
 grecaptcha.render("#recaptcha-div-login-page", {
@@ -137,7 +92,7 @@ function login() {
   var pw = $("#password").val();
   //if (!userpasswordTest(pw)) { $("#password").focus(); automsg({ buttonText: "关闭", message: "密码不正确" }); return; }
   var re = grecaptcha.getResponse();
-  AjaxFn("/user/login", { un: un, pw: pw, re: re }, function (res) {
+  AjaxFn("http://localhost:3000/user/login", { un: un, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
     } else {

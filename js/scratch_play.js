@@ -5,7 +5,7 @@ function showTEXT(txt,title){//显示说明与描述
 }
 function like(){//点赞
 	if (!isLogin){ automsg({buttonText: '关闭', message: '请先登录'}); return; }
-	AjaxFn('/scratch/play/like', {pid:_pid},function (res) {
+	AjaxFn('http://localhost:3000/scratch/play/like', {pid:_pid},function (res) {
 		automsg(res['msg']);
 		if ('1' == res['status']){
 			like_count += 1;
@@ -20,7 +20,7 @@ function like(){//点赞
 };
 function favo(){//收藏
 	if (!isLogin){ automsg({buttonText: '关闭', message: '请先登录'}); return; }
-	AjaxFn('/scratch/play/favo', {pid:_pid},function (res) {
+	AjaxFn('http://localhost:3000/scratch/play/favo', {pid:_pid},function (res) {
 		automsg(res['msg']);
 		if ('1' == res['status']){
 			favo_count = favo_count + res['opt'];
@@ -295,7 +295,8 @@ class VideoProvider {
 //项目数据下载URL：
 function getProjectUrl(asset) {
 var assetIdParts = asset.assetId.split('.');
-var assetUrlParts = ["//"+window.location.host+"/", 'scratch/play/project/', assetIdParts[0]];
+//var assetUrlParts = ["//"+window.location.host+"/", 'scratch/play/project/', assetIdParts[0]];
+var assetUrlParts = ["//localhost:3000/", 'scratch/play/project/', assetIdParts[0]];
 if (assetIdParts[1]) {assetUrlParts.push(assetIdParts[1]);}
 return assetUrlParts.join('');
 };

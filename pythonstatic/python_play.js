@@ -45,7 +45,7 @@ function getQueryString(name) {
 }
 //动态获取作品
 function getWork() {
-  AjaxFn("/python/getWork", { id: getQueryString('id') }, function (r) {
+  AjaxFn("http://localhost:3000/python/getWork", { id: getQueryString('id') }, function (r) {
     if ("ok" == r.status) {
       show_python_work(r.work);
     } else {
@@ -112,7 +112,7 @@ function show_python_work(work) {
 
   }
   AjaxFn(
-    `/api/getuserinfo?id=${work.authorid}`,
+    `http://localhost:3000/api/getuserinfo?id=${work.authorid}`,
     { id: work.authorid },
     function (r) {
       if ("ok" == r.status) {
