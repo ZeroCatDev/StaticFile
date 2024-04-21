@@ -149,7 +149,8 @@ background: url(/img/icon/spaceactive.png) no-repeat center/contain;
   #loading-progress {
     margin-right: auto !important;
     margin-left: auto !important;
-    width: 50%;
+    width: 75%;
+
     display: block !important
 }
 
