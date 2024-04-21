@@ -195,3 +195,6 @@
 .background-color{
     background-color: rgb(var(--mdui-color-secondary-container));
 }
+.ow-center{display: block !important;
+    margin-right: auto !important;
+    margin-left: auto !important;}

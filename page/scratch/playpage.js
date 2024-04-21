@@ -141,7 +141,7 @@ function getprojectinfo() {
         result.author_display_name;
       document.querySelector("#authorinfo").description = result.author_motto;
       document.querySelector("#authorinfo").href = "/user?id=" + result.id;
-      document.querySelector("#editlink").href = "/scratch/edit.html#" + result.id;
+      document.querySelector("#editlink").href = "/scratch/edit#" + result.id;
 
       document.querySelector("#authoravatar").src =
         S3staticurl + "/user/" + result.author_images + ".png";
@@ -170,6 +170,8 @@ function getprojectinfo() {
       favo_count = result.favo_count
       console.log("成功获取作品信息");
       console.log(result);
+
+      $(".remove-disabled").removeAttr("disabled");
      });
 
  

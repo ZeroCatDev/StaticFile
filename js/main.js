@@ -1,25 +1,30 @@
 function sooncoming() {
-  automsg({buttonText: '关闭', message: "开发中..."});
+  automsg({ buttonText: "关闭", message: "开发中..." });
 }
-Ow_Server="";
+Ow_Server = "";
 //服务器通信============================
 function AjaxFn(url, data, callbackFn) {
-  data.token = Cookies.get('token');
+  data.token = Cookies.get("token");
   $.ajax({
-    url: Ow_Server+url,
+    url: Ow_Server + url,
     type: "POST",
     data: data,
     success: function (d) {
       callbackFn(d);
     },
-    error: function (err) {automsg(err)},
+    error: function (err) {
+      automsg(err);
+    },
   });
 }
 //服务器通信============================
-function AjaxGet(url, data, callbackGet) {
-  data.token = Cookies.get('token');
+function AjaxGet(url, data, callbackGet, needauth) {
+  if (needauth == true) {
+    data.token = Cookies.get("token");
+  }
+  //data.token = Cookies.get('token');
   $.ajax({
-    url: Ow_Server+url,
+    url: Ow_Server + url,
     type: "GET",
     data: data,
     success: function (d) {
@@ -43,7 +48,8 @@ var emailTest = function (pw) {
 };
 
 var userpasswordTest = function (pw) {
-  var reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/  ;
+  var reg =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
   return reg["test"](pw);
 };
 var spaceTest = function (str) {
@@ -73,5 +79,3 @@ var numberTest = function (v) {
   var reg = /^([0-9]+){1,24}$/;
   return reg["test"](v);
 };
-
-

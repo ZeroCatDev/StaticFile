@@ -26,21 +26,6 @@ font-size:x-large;
     align-items: center;
     justify-content: center;
 }
-.green-flag-box{
-    height: 88px;
-    width: 88px;
-
-    background-color: #FFF;
-    border-radius:5px;
-    color: #333;
-    cursor: pointer;
-    opacity: 0.9;
-}
-.green-flag{
-    height: 48px;
-    width: 48px;
-    margin: 10px 0 5px 20px;
-}
 .scratch-player-bottom{
 margin: 18px 0;
 display: flex;
@@ -161,22 +146,17 @@ background: url(/img/icon/spaceactive.png) no-repeat center/contain;
     height: 100%;
   }
   
-  #loading-progress1 {
-    color: #0ff;
-    position: fixed;
-    
-    bottom: 0;
-    left: 0;
-    font-size: 16px;
-  }
   #loading-progress {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    width: 50%;
+    display: block !important
+}
+
+.loading-progress-box {
   position: absolute;
-  left: 0;
-  right: 0;
-  top:200px;
-  background-color: rgba(33, 33, 33, 0.7);
-  text-align: center;
-  line-height: 58px;
+  width:100%;
+  top: 40%
 }
   #fullscreen-btn {
     -webkit-appearance: none;

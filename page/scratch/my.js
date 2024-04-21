@@ -31,7 +31,7 @@ function loadPage(count, state) {
 <mdui-button onclick="delProject(this,${d[i].id})">删除</mdui-button>	
                       <mdui-button onclick="shareProject(${d[i].id})">分享</mdui-button>	
                       <mdui-button onclick="SetProjectDescription(${i})">简介</mdui-button>	
-                      <mdui-button onclick='location.href=("/scratch/edit.html#${d[i].id}")'>编辑</mdui-button>
+                      <mdui-button onclick='location.href=("/scratch/edit#${d[i].id}")'>编辑</mdui-button>
               </div>
       
 </div>
@@ -54,7 +54,7 @@ function loadPage(count, state) {
 <mdui-button onclick="delProject(this,${d[i].id})">删除</mdui-button>	
                       <mdui-button onclick="noshareProject(${d[i].id})">取消分享</mdui-button>	
                       <mdui-button onclick="SetProjectDescription(${i})">简介</mdui-button>	
-                      <mdui-button onclick='location.href=("/scratch/edit.html#${d[i].id}")'>编辑</mdui-button>
+                      <mdui-button onclick='location.href=("/scratch/edit#${d[i].id}")'>编辑</mdui-button>
               </div>
 </div>`);
             }
