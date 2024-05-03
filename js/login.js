@@ -94,7 +94,9 @@ function login() {
   var re = grecaptcha.getResponse();
   AjaxFn("http://localhost:3000/user/login", { un: un, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {
-      window.location.reload();
+      console.log(res['token'])
+      Cookies.set('token',res['token'])
+  window.location.reload();
     } else {
       automsg(res.status);
     }
