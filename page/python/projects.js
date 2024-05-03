@@ -3,7 +3,7 @@ var laypage = layui.laypage, layer = layui.layer;
 var python_count = 0
 
  function getpythoncount(load) {
-	AjaxGet("http://localhost:3000/python/pythoncount", {}, function (data) {
+	AjaxGet("/python/pythoncount", {}, function (data) {
 	
 	python_count = data.python_count;
     console.log("成功获取作品数量");
@@ -30,7 +30,7 @@ $(function () {
 			,     limits: [8, 16, 32]
 
 			, jump: function (obj, first) {
-				AjaxFn('http://localhost:3000/python/view/getPythonProjects',{ curr: obj.curr, limit: obj.limit, type: thetype },function(d){
+				AjaxFn('/python/view/getPythonProjects',{ curr: obj.curr, limit: obj.limit, type: thetype },function(d){
 				    if (d.length) {
 						$("#python_projects").html("");
 						for (var i = 0; i < d.length; i++) {
@@ -53,7 +53,7 @@ $(function () {
 							<div class="substr card-main-subtitle">${d[i].description}</div>
 						</div>
 					<div style="padding: 16px;">
-						<img class="card-avatar" src="http://localhost:3000/api/usertx?id=${d[i].authorid}" />
+						<img class="card-avatar" src="/api/usertx?id=${d[i].authorid}" />
 						<div class="card-user card-user-name">${d[i].display_name}</div>
 						<div class="card-user card-user-motto">${d[i].view_count}浏览</div>
 					</div>
@@ -103,7 +103,7 @@ d[i].description = '暂无简介'
 						<div class="substr card-main-subtitle">${d[i].description}</div>
 					</div>
 				<div style="padding: 16px;">
-					<img class="card-avatar" src="http://localhost:3000/api/usertx?id=${d[i].authorid}" />
+					<img class="card-avatar" src="/api/usertx?id=${d[i].authorid}" />
 					<div class="card-user card-user-name">${d[i].display_name}</div>
 					<div class="card-user card-user-motto">${d[i].view_count}浏览</div>
 				</div>

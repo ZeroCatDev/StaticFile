@@ -4,7 +4,7 @@ var scratch_type = "new";
 var scratch_count = 0
 
  function getscratchcount(load) {
-  AjaxGet("http://localhost:3000/scratch/scratchcount", {}, function (data) {
+  AjaxGet("/scratch/scratchcount", {}, function (data) {
     scratch_count = data.scratch_count;
     console.log("成功获取作品数量");
   console.log(data.scratch_count);
@@ -30,7 +30,7 @@ function Scratch(thetype) {
     layout: ["count", "prev", "page", "next", "limit", "refresh", "skip"],
     limits: [8, 16, 32],
     jump: function (obj, first) {
-      AjaxFn("http://localhost:3000/scratch/view/getScratchProjects",{ curr: obj.curr, limit: obj.limit, type: thetype },function (d) {
+      AjaxFn("/scratch/view/getScratchProjects",{ curr: obj.curr, limit: obj.limit, type: thetype },function (d) {
         if (d.length) {
           $("#scratch_projects").html("");
           for (var i = 0; i < d.length; i++) {
@@ -49,7 +49,7 @@ function Scratch(thetype) {
   </div>
 </mdui-card>
 <div href='/user?id=${d[i].authorid}' style="padding: 16px;">
-  <img class="card-avatar" src="http://localhost:3000/api/usertx?id=${d[i].authorid}" />
+  <img class="card-avatar" src="/api/usertx?id=${d[i].authorid}" />
   <div class="card-user card-user-name">${d[i].display_name}</div>
   <div class="card-user card-user-motto">${d[i].view_count}浏览</div>
 </div>
@@ -80,7 +80,7 @@ function Scratch_Search() {
     $("#scratch_search_txt").focus();
     return;
   }
-  AjaxFn("http://localhost:3000/scratch/view/seachScratchProjects",{
+  AjaxFn("/scratch/view/seachScratchProjects",{
     t: "s",
     txt: txt,
     searchall: document.getElementById("search_src").checked,
@@ -104,7 +104,7 @@ function Scratch_Search() {
   </div>
 </mdui-card>
 <div href='/user?id=${d[i].authorid}' style="padding: 16px;">
-  <img class="card-avatar" src="http://localhost:3000/api/usertx?id=${d[i].authorid}" />
+  <img class="card-avatar" src="/api/usertx?id=${d[i].authorid}" />
   <div class="card-user card-user-name">${d[i].display_name}</div>
   <div class="card-user card-user-motto">${d[i].view_count}浏览</div>
 </div>

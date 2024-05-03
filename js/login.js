@@ -92,7 +92,7 @@ function login() {
   var pw = $("#password").val();
   //if (!userpasswordTest(pw)) { $("#password").focus(); automsg({ buttonText: "关闭", message: "密码不正确" }); return; }
   var re = grecaptcha.getResponse();
-  AjaxFn("http://localhost:3000/user/login", { un: un, pw: pw, re: re }, function (res) {
+  AjaxFn("/user/login", { un: un, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {
       console.log(res['token'])
       Cookies.set('token',res['token'])

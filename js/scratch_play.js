@@ -10,7 +10,7 @@ function like() {
     return;
   }
   AjaxFn(
-    "http://localhost:3000/scratch/play/like",
+    "/scratch/play/like",
     { pid: _pid },
     function (res) {
       automsg(res["msg"]);
@@ -33,7 +33,7 @@ function favo() {
     return;
   }
   AjaxFn(
-    "http://localhost:3000/scratch/play/favo",
+    "/scratch/play/favo",
     { pid: _pid },
     function (res) {
       automsg(res["msg"]);
@@ -355,12 +355,8 @@ class VideoProvider {
 //项目数据下载URL：
 function getProjectUrl(asset) {
   var assetIdParts = asset.assetId.split(".");
-  //var assetUrlParts = ["//"+window.location.host+"/", 'scratch/play/project/', assetIdParts[0]];
-  var assetUrlParts = [
-    "//localhost:3000/",
-    "scratch/play/project/",
-    assetIdParts[0],
-  ];
+  var assetUrlParts = ["//"+window.location.host+"/", 'scratch/play/project/', assetIdParts[0]];
+  //var assetUrlParts = [  "//localhost:3000/",  "scratch/play/project/", assetIdParts[0],];
   if (assetIdParts[1]) {
     assetUrlParts.push(assetIdParts[1]);
   }

@@ -135,7 +135,7 @@ function getQueryString(name) {
 }
 function getprojectinfo() {
   _pid = getQueryString('id');
-  AjaxGet("http://localhost:3000/scratch/projectinfo?id="+ getQueryString("id"), {}, function (result) {
+  AjaxGet("/scratch/projectinfo?id="+ getQueryString("id"), {}, function (result) {
 	
   document.querySelector("#authorinfo").headline =
         result.author_display_name;

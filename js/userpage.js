@@ -27,7 +27,7 @@ function getQueryString(name) {
 };
 
 function loaduserinfo() {
-    AjaxGet("http://localhost:3000/api/getuserinfo?id="+getQueryString('id'), {}, function (data) {
+    AjaxGet("/api/getuserinfo?id="+getQueryString('id'), {}, function (data) {
         console.log(data.info);
         $("#mainuserdisplay_name").html(DOMPurify.sanitize(data.info.display_name));
 

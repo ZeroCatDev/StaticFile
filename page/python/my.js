@@ -102,7 +102,7 @@ var state0_count = 0
 var state1_count = 0
 var state2_count = 0
 function getinfo(load) {
-  AjaxGet("http://localhost:3000/api/myprojectcount?type=python", {}, function (data) {
+  AjaxGet("/api/myprojectcount?type=python", {}, function (data) {
     console.log("成功获取项目数量信息");
     console.log(data);
     state0_count = data.state0_count

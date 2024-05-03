@@ -92,7 +92,7 @@ function updateUsername() {
       aboutme: $("#my_aboutme")["val"](),
     };
   
-    AjaxFn("http://localhost:3000/my/set/userinfo", data, function (res) {
+    AjaxFn("/my/set/userinfo", data, function (res) {
       automsg(res.status);
     });
   }

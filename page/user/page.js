@@ -34,7 +34,7 @@ var scratch_count = 0;
 var python_count = 0;
 function loaduserinfo(load) {
 
-    AjaxGet("http://localhost:3000/api/getuserinfo?id=" + getQueryString("id"), {}, function (data) {
+    AjaxGet("/api/getuserinfo?id=" + getQueryString("id"), {}, function (data) {
       console.log(data.info);
       $("#mainuserdisplay_name").html(DOMPurify.sanitize(data.info.display_name));
   
@@ -72,7 +72,7 @@ function Scratch() {
     layout: ["count", "prev", "page", "next", "limit", "refresh", "skip"],
     limits: [8, 16, 32],
     jump: function (obj, first) {
-      AjaxFn("http://localhost:3000/api/getUserScratchProjects",{
+      AjaxFn("/api/getUserScratchProjects",{
         curr: obj.curr,
         limit: obj.limit,
         userid: getQueryString("id"),
@@ -117,7 +117,7 @@ function Python() {
     layout: ["count", "prev", "page", "next", "limit", "refresh", "skip"],
     limits: [8, 16, 32],
     jump: function (obj, first) {
-      AjaxFn("http://localhost:3000/api/getUserPythonProjects", {
+      AjaxFn("/api/getUserPythonProjects", {
         curr: obj.curr,
         limit: obj.limit,
         userid: getQueryString("id"),
