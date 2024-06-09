@@ -118,7 +118,7 @@ function torepw() {
     return;
   }
   var re = grecaptcha.getResponse();
-  AjaxFn("/user/torepw", { token: token, pw: pw, re: re }, function (res) {
+  AjaxFn("/user/torepw", { jwttoken: token, pw: pw, re: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
