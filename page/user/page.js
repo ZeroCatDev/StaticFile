@@ -34,7 +34,7 @@ var scratch_count = 0;
 var python_count = 0;
 function loaduserinfo(load) {
 
-    AjaxGet("/api/getuserinfo?id=" + getQueryString("id"), {}, function (data) {
+    AjaxGet("/api/getuserinfo" + getQueryString("id"), {id:getQueryString("id")}, function (data) {
       console.log(data.info);
       $("#mainuserdisplay_name").html(DOMPurify.sanitize(data.info.display_name));
   

@@ -111,11 +111,12 @@ function show_python_work(work) {
     document.querySelector('#projectstate').innerText='优秀作品'
 
   }
-  AjaxFn(
-    `/api/getuserinfo?id=${work.authorid}`,
+  AjaxGet(
+    `/api/getuserinfo`,
     { id: work.authorid },
     function (r) {
       if ("ok" == r.status) {
+        console.log("获取作者信息:"+r.info);
         show_python_userinfo(r.info);
       } else {
         automsg(r.msg);
