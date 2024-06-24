@@ -1,9 +1,9 @@
 
 function onloadCallback() {
-grecaptcha.render("#recaptcha-div-login-page", {
+grecaptcha.render("#captcha-div", {
     sitekey: rekey,
   });
- 
+
 }
 
 //找回密码
@@ -128,7 +128,8 @@ function torepw() {
 }
 function switchPage(goPage) {
   $(`#${goPage}`).show().siblings().hide();
-  grecaptcha.render(`#recaptcha-div-${goPage}`, {
-    sitekey: rekey,
-  });
+
+}
+function reloudcaptcha(){
+  grecaptcha.reset();
 }
