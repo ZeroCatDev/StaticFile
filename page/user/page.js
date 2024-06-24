@@ -34,14 +34,14 @@ var scratch_count = 0;
 var python_count = 0;
 function loaduserinfo(load) {
 
-    AjaxGet("/api/getuserinfo" + getQueryString("id"), {id:getQueryString("id")}, function (data) {
+    AjaxGet("/api/getuserinfo", {id:getQueryString("id")}, function (data) {
       console.log(data.info);
       $("#mainuserdisplay_name").html(DOMPurify.sanitize(data.info.display_name));
-  
+
       $("#usermotto").html(DOMPurify.sanitize(marked.parse(data.info.motto)));
       $("#mainuserimages").attr(
         "src",
-        S3staticurl + "/user/" + data.info.images 
+        S3staticurl + "/user/" + data.info.images
       );
       $("#regTime").html(FormatTime("yyyy-MM-dd", data.info.regTime) + "注册");
       $("#tag").html(data.info.tag);
@@ -49,8 +49,8 @@ function loaduserinfo(load) {
       python_count = data.info.python_count
       load()
         });
-      
-  
+
+
 }
 
 $(function () {
@@ -102,7 +102,7 @@ function Scratch() {
             `<p class="mdui-text-center">没有找到Scratch作品</p>`
           );
           automsg({ buttonText: "关闭", message: "无满足条件的作品" });
-        }        
+        }
       })
 
     },
@@ -153,10 +153,8 @@ function Python() {
 
 
 function getQueryString(name) {
-  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-  var r = window.location.search.substr(1).match(reg);
-  if (r != null) {
-    return unescape(r[2]);
-  }
-  return null;
+  const queryString = window.location.search.slice(1);
+  const reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+  const r = queryString.match(reg);
+  return r ? decodeURIComponent(r[2]) : null;
 }
