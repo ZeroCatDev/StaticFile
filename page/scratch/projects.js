@@ -80,7 +80,7 @@ function Scratch_Search() {
     $("#scratch_search_txt").focus();
     return;
   }
-  AjaxFn("/scratch/view/seachScratchProjects",{
+  AjaxGet("/scratch/view/seachScratchProjects",{
     t: "s",
     txt: txt,
     searchall: document.getElementById("search_src").checked,
