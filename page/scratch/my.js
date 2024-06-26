@@ -10,7 +10,7 @@ function loadPage(count, state) {
     layout: ["count", "prev", "page", "next", "limit", "refresh", "skip"],
     limits: [8, 16, 32],
     jump: function (obj, first) {
-      AjaxFn("/my/getScratchProjects",{ curr: obj.curr, limit: obj.limit, state: state },function (d) {
+      AjaxGet("/my/getScratchProjects",{ curr: obj.curr, limit: obj.limit, state: state },function (d) {
         if (d.length) {
           $("#box_projects").html("");
           scratchinfo = d;
@@ -28,12 +28,12 @@ function loadPage(count, state) {
 
 
 </mdui-card><div class="mdui-card-actions">
-<mdui-button onclick="delProject(this,${d[i].id})">删除</mdui-button>	
-                      <mdui-button onclick="shareProject(${d[i].id})">分享</mdui-button>	
-                      <mdui-button onclick="SetProjectDescription(${i})">简介</mdui-button>	
+<mdui-button onclick="delProject(this,${d[i].id})">删除</mdui-button>
+                      <mdui-button onclick="shareProject(${d[i].id})">分享</mdui-button>
+                      <mdui-button onclick="SetProjectDescription(${i})">简介</mdui-button>
                       <mdui-button onclick='location.href=("/scratch/edit#${d[i].id}")'>编辑</mdui-button>
               </div>
-      
+
 </div>
                               `);
             }
@@ -51,9 +51,9 @@ function loadPage(count, state) {
 
 
 </mdui-card><div class="mdui-card-actions">
-<mdui-button onclick="delProject(this,${d[i].id})">删除</mdui-button>	
-                      <mdui-button onclick="noshareProject(${d[i].id})">取消分享</mdui-button>	
-                      <mdui-button onclick="SetProjectDescription(${i})">简介</mdui-button>	
+<mdui-button onclick="delProject(this,${d[i].id})">删除</mdui-button>
+                      <mdui-button onclick="noshareProject(${d[i].id})">取消分享</mdui-button>
+                      <mdui-button onclick="SetProjectDescription(${i})">简介</mdui-button>
                       <mdui-button onclick='location.href=("/scratch/edit#${d[i].id}")'>编辑</mdui-button>
               </div>
 </div>`);
@@ -65,9 +65,9 @@ function loadPage(count, state) {
           );
         }
       }
-        
+
       )
-      
+
     },
   });
 }
@@ -98,7 +98,7 @@ var state2_count = 0
 function getinfo(load) {
 
   AjaxGet("/api/myprojectcount?type=scratch", {}, function (data) {
-	
+
    console.log("成功获取项目数量信息");
    console.log(data);
    state0_count = data.state0_count
@@ -106,7 +106,7 @@ function getinfo(load) {
    state2_count = data.state2_count
    load()
 		  });
- 
+
 }
 //分享作品
 function shareProject(id) {

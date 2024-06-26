@@ -10,15 +10,15 @@ var scratch_count = 0
   console.log(data.scratch_count);
     load()
 		  });
- 
 
-  
+
+
 }
 
 $(function () {
   getscratchcount(function(){
     Scratch("new");
-  })  
+  })
 });
 
 function Scratch(thetype) {
@@ -30,7 +30,7 @@ function Scratch(thetype) {
     layout: ["count", "prev", "page", "next", "limit", "refresh", "skip"],
     limits: [8, 16, 32],
     jump: function (obj, first) {
-      AjaxFn("/scratch/view/getScratchProjects",{ curr: obj.curr, limit: obj.limit, type: thetype },function (d) {
+      AjaxGet("/scratch/view/getScratchProjects",{ curr: obj.curr, limit: obj.limit, type: thetype },function (d) {
         if (d.length) {
           $("#scratch_projects").html("");
           for (var i = 0; i < d.length; i++) {
@@ -63,7 +63,7 @@ function Scratch(thetype) {
           automsg({ buttonText: "关闭", message: "无满足条件的作品" });
         }
       });
-    
+
     },
   });
 }
@@ -119,5 +119,5 @@ function Scratch_Search() {
       automsg({ buttonText: "关闭", message: "无满足条件的作品" });
     }
   })
-  
+
 }

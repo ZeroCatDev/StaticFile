@@ -1,22 +1,22 @@
 var laypage = layui.laypage, layer = layui.layer;
-	
+
 var python_count = 0
 
  function getpythoncount(load) {
 	AjaxGet("/python/pythoncount", {}, function (data) {
-	
+
 	python_count = data.python_count;
     console.log("成功获取作品数量");
   console.log(data.python_count);
     load()
 		  });
- 
+
 }
 
 $(function () {
   getpythoncount(function(){
     Python("new");
-  })  
+  })
 });
 
 	var python_type = 'new';
@@ -30,12 +30,12 @@ $(function () {
 			,     limits: [8, 16, 32]
 
 			, jump: function (obj, first) {
-				AjaxFn('/python/view/getPythonProjects',{ curr: obj.curr, limit: obj.limit, type: thetype },function(d){
+				AjaxGet('/python/view/getPythonProjects',{ curr: obj.curr, limit: obj.limit, type: thetype },function(d){
 				    if (d.length) {
 						$("#python_projects").html("");
 						for (var i = 0; i < d.length; i++) {
 							tzzt=''
-							
+
 							if (d[i].state == 2) {
 
 								tzzt = '<i class="mdui-icon material-icons">stars</i>'
@@ -45,7 +45,7 @@ $(function () {
 								d[i].description = '暂无简介'
 }
 							$("#python_projects").append(`
-							
+
 			<div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
 				<mdui-card variant="outlined" href='/python/play?id=${d[i].id}' clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
 					<div class="card-main">
@@ -82,7 +82,7 @@ $(function () {
 	function Python_Search() {
 		var txt = $("#python_search_txt").val();
 		if (txt == '') { $("#python_search_txt").focus(); return }
-		AjaxFn('/python/view/seachPythonProjects',{ t: 'p', txt: txt, searchall: document.getElementById("python_src").checked },function(d){if (d.length) {
+		AjaxGet('/python/view/seachPythonProjects',{ t: 'p', txt: txt, searchall: document.getElementById("python_src").checked },function(d){if (d.length) {
 			$("#python_projects").html("");
 
 			for (var i = 0; i < d.length; i++) {
@@ -116,5 +116,5 @@ d[i].description = '暂无简介'
 		} else {
 			automsg({ buttonText: '关闭', message: "无满足条件的作品" });
 		}})
-		
+
 	}
