@@ -19,7 +19,7 @@ editor.setValue($("#code_textarea").val());
 window.CodeMirror = CodeMirror;
 function FormatTime(t,date){
   var date=new Date(date);
-  var o = {   
+  var o = {
       "M+" : date.getMonth()+1,                 //月份
       "d+" : date.getDate(),                    //日
       "h+" : date.getHours(),                   //小时
@@ -27,16 +27,16 @@ function FormatTime(t,date){
       "s+" : date.getSeconds(),                 //秒
       "q+" : Math.floor((date.getMonth()+3)/3), //季度
       "S"  : date.getMilliseconds()             //毫秒
-  };   
+  };
   if(/(y+)/.test(t)){
-      t=t.replace(RegExp.$1,(date.getFullYear()+"").substr(4-RegExp.$1.length)); 
-  };    
+      t=t.replace(RegExp.$1,(date.getFullYear()+"").substr(4-RegExp.$1.length));
+  };
   for(var k in o){
       if(new RegExp("("+ k +")").test(t)){
-          t=t.replace(RegExp.$1,(RegExp.$1.length==1)?(o[k]):(("00"+ o[k]).substr((""+o[k]).length))); 
-      }; 
+          t=t.replace(RegExp.$1,(RegExp.$1.length==1)?(o[k]):(("00"+ o[k]).substr((""+o[k]).length)));
+      };
   }
-  return t; 
+  return t;
 };
 function getQueryString(name) {
   const url_string = window.location.href
@@ -66,8 +66,8 @@ function show_python_userinfo(work) {
   document.querySelector('#authorinfo').setAttribute('headline', work.display_name);
   document.querySelector('#authorinfo').setAttribute('description',work.motto);
   document.querySelector('#authorinfo').setAttribute('href','/user?id=' + work.id);
-  document.querySelector('#authoravatar').setAttribute('src', S3staticurl+'/user/'+work.images+'.png');
-  
+  document.querySelector('#authoravatar').setAttribute('src', S3staticurl+'/user/'+work.images);
+
 }
 //用一个作品数据初始化界面
 function show_python_work(work) {
@@ -105,7 +105,7 @@ function show_python_work(work) {
     document.querySelector('#projectstate').innerText='公开作品'
 
   }
-  
+
   else if (work.state=='2'){
     document.querySelector('#projectstate').setAttribute('icon', 'star');
     document.querySelector('#projectstate').innerText='优秀作品'

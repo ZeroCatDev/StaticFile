@@ -1,3 +1,4 @@
+
 function userinfo() {
   isLogin = false;
   _userid = 0;
@@ -12,6 +13,8 @@ function userinfo() {
       $(".ow-userid").text(decoded.userid);
       $(".ow-useravatar").attr("src", "/api/usertx?id=" + decoded.userid);
       $(".ow-useravatar").attr("alt", decoded.display_name);
+      Cookies.set('local-userid',decoded.userid)
+
       isLogin = true;
       _userid = decoded.userid;
     } catch (error) {
@@ -24,12 +27,10 @@ function userinfo() {
   }
 }
 
-
-
-window.onload = function() {
-
-
+$(function () {
   userinfo();
+
+
 
 
 
@@ -52,12 +53,13 @@ window.onload = function() {
   }
   jQuery(document).ready(function () {
     getCDNinfo();
-  }); 
-};
-
+  });
 
   const webdialog = document.querySelector("#webdialog");
   const webdialogiframe = document.querySelector("#webdialogiframe");
+
+});
+
 
 
   function openWebdialog(src) {
