@@ -135,10 +135,10 @@ function getQueryString(name) {
 }
 var projectinfo={}
 var $config = {
-  title: 'ZeroCat社区', 
-  description: 'ZeroCat社区', 
-  image: S3staticurl+'/scratch_slt/1', 
-  wechatqrcodeTitle: "微信扫一扫分享", 
+  title: 'ZeroCat社区',
+  description: 'ZeroCat社区',
+  image: S3staticurl+'/scratch_slt/1',
+  wechatqrcodeTitle: "微信扫一扫分享",
   wechatqrcodeHelper: '<p>打开扫一扫</p><p>在手机上打开即可分享至朋友圈。</p>',
 };
 function getprojectinfo() {
@@ -152,7 +152,7 @@ function getprojectinfo() {
       document.querySelector("#editlink").href = "/scratch/edit#" + result.id;
 
       document.querySelector("#authoravatar").src =
-        S3staticurl + "/user/" + result.author_images + ".png";
+        S3staticurl + "/user/" + result.author_images;
       document.querySelector("#projecttitle").innerText = result.title;
       document.querySelector("#projectdescription").innerText =
         result.description;
@@ -177,10 +177,10 @@ function getprojectinfo() {
       like_count = result.like_count
       favo_count = result.favo_count
       $config = {
-				title: result.title, 
-				description: `${result.title}是${result.author_display_name}在ZeroCat社区上的作品`, 
-				image: S3staticurl+'/scratch_slt/'+result.id, 
-				wechatqrcodeTitle: "微信扫一扫分享", 
+				title: result.title,
+				description: `${result.title}是${result.author_display_name}在ZeroCat社区上的作品`,
+				image: S3staticurl+'/scratch_slt/'+result.id,
+				wechatqrcodeTitle: "微信扫一扫分享",
 				wechatqrcodeHelper: '<p>打开扫一扫</p><p>在手机上打开即可分享至朋友圈。</p>',
 			};
       console.log("成功获取作品信息");
@@ -189,7 +189,7 @@ function getprojectinfo() {
       $(".remove-disabled").removeAttr("disabled");
      });
 
- 
+
 }
 $(function () {
   getprojectinfo();

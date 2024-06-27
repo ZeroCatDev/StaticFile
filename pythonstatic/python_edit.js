@@ -301,7 +301,7 @@ var not_all_screen = `
   <div class="layui-row">
     <div class="layui-col-md12 layui-col-sm6 layui-col-xs12" style="padding: 0;">
       <div id="canvas_box" style="height:calc(50vh); background:url(png) no-repeat center;background-size: contain;background-size:auto 100%;">
-        <div id="pythoncanvas"></div>    
+        <div id="pythoncanvas"></div>
       </div>
     </div>
 
@@ -314,7 +314,7 @@ var not_all_screen = `
 var all_screen = `
   <div class="layui-col-md12 layui-col-sm12 layui-col-xs12" style="padding: 0;">
   <div id="canvas_box" style="height:calc(100vh - 52px); background:url(png) no-repeat center;background-size: contain;background-size:auto 100%;">
-    <div id="pythoncanvas"></div>    
+    <div id="pythoncanvas"></div>
   </div>
 </div>
 
@@ -387,7 +387,7 @@ function open_YX() {
 <div class="mdui-card" style="margin:5px 0px 5px 0px;border-radius: 15px;">
 
  <div class="mdui-card-header" >
-    <img class="mdui-card-header-avatar" src="${S3staticurl}/user/${p.authorid}.png"/>
+    <img class="mdui-card-header-avatar" src="${S3staticurl}/user/${p.authorid}"/>
     <div class="mdui-card-header-title">${p.author_display_name}</div>
     <div class="mdui-card-header-subtitle">ZeroCat创作者</div>
   </div>
@@ -395,8 +395,8 @@ function open_YX() {
     <div class="mdui-card-primary-title">${p.title}</div>
     <div class="mdui-card-primary-subtitle">浏览量:${p.view_count},更新时间:${p.time}</div>
 </div>
-                         
-                          
+
+
 <div class="mdui-card-actions">
   <button class="mdui-btn mdui-ripple" onClick="openProject(${p.id}, ${index})" style="border-radius: 10px;">打开</button>
   <button class="mdui-btn mdui-btn-icon mdui-float-right" onclick='window.open("/python/edit#${p.id}")'>
@@ -478,9 +478,9 @@ function open_MY() {
     </button>
   </div>
 </div>
-                
-                            
-                            
+
+
+
                             `;
 
                 lis.push(content);
