@@ -1,6 +1,6 @@
 {
   "name": "owstatic",
-  "version": "1.0.48",
+  "version": "1.0.49",
   "description": "ourworld.wuyuan.dev",
   "main": "index.js",
   "scripts": {
