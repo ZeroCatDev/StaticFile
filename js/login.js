@@ -96,6 +96,12 @@ function login() {
     if ("OK" == res.status) {
       console.log(res['token'])
       Cookies.set('token',res['token'])
+      if(getQueryString('redirect')){
+
+        if(getQueryString('redirect')=='editor'){
+          window.open("https://zerocatdev.github.io/scratch-gui/editor.html?token="+res['token'])
+        }
+      }
   window.location.reload();
     } else {
       automsg(res.status);
