@@ -46,8 +46,8 @@ $(function () {
 }
 							$("#python_projects").append(`
 
-			<div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
-				<mdui-card variant="outlined" href='/python/play?id=${d[i].id}' clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
+			<div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
+				<mdui-card variant="filled" href='/python/play?id=${d[i].id}' clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
 					<div class="card-main">
 							<div class="substr card-main-text" >${tzzt}${d[i].title}</div>
 							<div class="substr card-main-subtitle">${d[i].description}</div>
@@ -96,8 +96,8 @@ $(function () {
 d[i].description = '暂无简介'
 }
 				$("#python_projects").append(`
-				<div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
-			<mdui-card variant="outlined" href='/python/play?id=${d[i].id}' clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
+				<div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
+			<mdui-card variant="filled" href='/python/play?id=${d[i].id}' clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
 				<div class="card-main">
 						<div class="substr card-main-text" >${tzzt}${d[i].title}</div>
 						<div class="substr card-main-subtitle">${d[i].description}</div>

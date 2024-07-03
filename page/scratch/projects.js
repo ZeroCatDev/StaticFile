@@ -39,8 +39,8 @@ function Scratch(thetype) {
               tzzt = '<i class="mdui-icon material-icons">stars</i>';
             }
             $("#scratch_projects").append(`
-<div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
-<mdui-card variant="outlined" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
+<div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
+<mdui-card variant="filled" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
 <mdui-card clickable href="/scratch/play?id=${d[i].id}">
   <img src="${S3staticurl}/scratch_slt/${d[i].id}"
       style="pointer-events: none;width: 100%;" />
@@ -94,8 +94,8 @@ function Scratch_Search() {
           tzzt = '<i class="mdui-icon material-icons">stars</i>';
         }
         $("#scratch_projects").append(`
-                  <div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
-<mdui-card variant="outlined" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
+                  <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
+<mdui-card variant="filled" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
 <mdui-card clickable href="/scratch/play?id=${d[i].id}">
   <img src="${S3staticurl}/scratch_slt/${d[i].id}"
       style="pointer-events: none;width: 100%;" />

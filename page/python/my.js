@@ -23,7 +23,7 @@ function loadPage(count, state) {
 
 
 
-    <div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
+    <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
         <mdui-card variant="outlined" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
           <div class="card-main">
               <div class="substr card-main-text" >${d[i].title}</div>
@@ -48,7 +48,7 @@ function loadPage(count, state) {
           } else {
             for (var i = 0; i < d.length; i++) {
               $("#box_projects")
-                .append(`<div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
+                .append(`<div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
         <mdui-card variant="outlined" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
           <div class="card-main">
               <div class="substr card-main-text" >${d[i].title}</div>

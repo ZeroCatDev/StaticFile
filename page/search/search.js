@@ -62,7 +62,7 @@ function Scratch_Search(curr) {
         document.getElementById(
           "scratch_change_page"
         ).innerHTML = `<mdui-button onclick="Scratch(scratch_type)">取消搜索</mdui-button>`;
-   
+
       } else {
         automsg({ buttonText: "关闭", message: "无满足条件的作品" });
       }
@@ -77,7 +77,7 @@ function projecthtml(type, d) {
       tzzt = '<i class="mdui-icon material-icons">stars</i>';
     }
     return `
-                <div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
+                <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
   <mdui-card variant="outlined" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
   <mdui-card clickable href="/scratch/play?id=${d.id}">
     <img src="${S3staticurl}/scratch_slt/${d.id}"
@@ -96,7 +96,7 @@ function projecthtml(type, d) {
   }
   if (type == "python") {
     return `
-                <div class="mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
+                <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
 			<mdui-card variant="outlined" href='/python/play?id=${d.id}' clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
 				<div class="card-main">
 						<div class="substr card-main-text" >${tzzt}${d.title}</div>
@@ -125,17 +125,17 @@ function choose_search() {
 
         for (var i = 0; i < d.length; i++) {
           $("#choose_user_box").append(`
-      
-    
-              <mdui-list-item rounded onclick="choose_user_set(${d[i].id})" class='choose_item' id='choose_item_${d[i].id}'>${userlist[i].display_name}    <mdui-avatar slot="icon" src="${S3staticurl}/user/${userlist[i].images}">   
+
+
+              <mdui-list-item rounded onclick="choose_user_set(${d[i].id})" class='choose_item' id='choose_item_${d[i].id}'>${userlist[i].display_name}    <mdui-avatar slot="icon" src="${S3staticurl}/user/${userlist[i].images}">
 </mdui-avatar> <span slot="description">${userlist[i].motto}</span>
 </mdui-list-item>
 
-    
-    
-    
-    
-    
+
+
+
+
+
     `);
         }
       }
@@ -152,8 +152,8 @@ function choose_user_set(id) {
   $("#choose_item_" + id).attr("active", "");
   useritem = userlist.find((item) => item.id === id);
   $("#open_choose_user").html(`
-    
-    <mdui-list-item rounded  active>${useritem.display_name}    <mdui-avatar slot="icon" src="${S3staticurl}/user/${useritem.images}">   
+
+    <mdui-list-item rounded  active>${useritem.display_name}    <mdui-avatar slot="icon" src="${S3staticurl}/user/${useritem.images}">
 </mdui-avatar> <span slot="description">${useritem.motto}</span>
 </mdui-list-item>`);
 }
