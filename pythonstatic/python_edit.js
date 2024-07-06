@@ -1,18 +1,43 @@
 var _work_changed = false;
-var require = { paths: { vs: '<%= process.env.staticurl %>/vs' } };
+
 var editor = monaco.editor.create(document.getElementById('container'), {
   language: 'python',
-  theme: 'vs-dark'// vs, hc-black, or vs-dark
+  theme: 'vs-dark',
+  value: 'print("加载中")',
+  acceptSuggestionOnCommitCharacter: true, // 接受关于提交字符的建议
+  acceptSuggestionOnEnter: 'on', // 接受输入建议 "on" | "off" | "smart"
+  autoClosingBrackets: 'always', // 是否自动添加结束括号(包括中括号) "always" | "languageDefined" | "beforeWhitespace" | "never"
+  autoClosingDelete: 'always', // 是否自动删除结束括号(包括中括号) "always" | "never" | "auto"
+  autoClosingOvertype: 'always', // 是否关闭改写 即使用insert模式时是覆盖后面的文字还是不覆盖后面的文字 "always" | "never" | "auto"
+  autoClosingQuotes: 'always', // 是否自动添加结束的单引号 双引号 "always" | "languageDefined" | "beforeWhitespace" | "never"
+  autoIndent: 'always', // 控制编辑器在用户键入、粘贴、移动或缩进行时是否应自动调整缩进
+  automaticLayout: true, // 自动布局
+  codeLens: true, // 是否显示codeLens 通过 CodeLens，你可以在专注于工作的同时了解代码所发生的情况 – 而无需离开编辑器。 可以查找代码引用、代码更改、关联的 Bug、工作项、代码评审和单元测试。
+  comments: {
+    ignoreEmptyLines: true, // 插入行注释时忽略空行。默认为真。
+    insertSpace: true // 在行注释标记之后和块注释标记内插入一个空格。默认为真。
+  }, // 注释配置
+  contextmenu: true, // 启用上下文菜单
+
+  folding: true, // 是否启用代码折叠
+  links: true, // 是否点击链接
+  readOnly: false, // 是否为只读模式
 });
 
 
 //动态获取作品
 function getWork(hashWorkId) {
+  document.getElementById('pageprogress').innerHTML = '<div class="mdui-progress"><div class="mdui-progress-indeterminate"></div></div>';
   AjaxFn("/python/getWork", { id: hashWorkId }, function (r) {
     if ("ok" == r.status) {
       show_python_work(r.work);
+
+        document.getElementById('pageprogress').innerHTML = '';
+
     } else {
       automsg(r.msg);
+        document.getElementById('pageprogress').innerHTML = '';
+
     }
   });
 }

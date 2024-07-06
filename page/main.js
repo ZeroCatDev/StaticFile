@@ -1,4 +1,7 @@
 
+
+var isLogin = false;
+var _userid = 0;
 function userinfo() {
   isLogin = false;
   _userid = 0;
@@ -25,6 +28,7 @@ function userinfo() {
     document.getElementById("user-drawer-list").innerHTML =
       '<mdui-list-item rounded href="/user/login">注册</mdui-list-item> <mdui-list-item rounded href="/user/login">登录</mdui-list-item><mdui-list-item rounded class="close-user" icon="arrow_left">关闭</mdui-list-item>';
   }
+  isLogin =false
 }
 
 $(function () {
@@ -33,7 +37,11 @@ $(function () {
 
 
 
-
+  if(localStorage.getItem("win8ui")){
+    if(localStorage.getItem("win8ui")=="true"){
+      $("#mdui_css").removeAttr("href");
+    }
+  }
   getCDNinfo = function () {
     jQuery.ajax({
       url: "/cdn-cgi/trace",
