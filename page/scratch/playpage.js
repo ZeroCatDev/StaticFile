@@ -145,11 +145,13 @@ function getprojectinfo() {
   _pid = getQueryString('id');
   AjaxGet("/scratch/projectinfo?id="+ getQueryString("id"), {}, function (result) {
     projectinfo = result
+    document.querySelector("#project_iframe").src = 'https://zerocat-static.houlangs.com/scratchguifile/embed.html#'+result.id;
   document.querySelector("#authorinfo").headline =
         result.author_display_name;
       document.querySelector("#authorinfo").description = result.author_motto;
       document.querySelector("#authorinfo").href = "/user?id=" + result.authorid;
-      document.querySelector("#editlink").href = "/scratch/edit#" + result.id;
+      document.querySelector("#editlink-old").href = "/scratch/edit#" + result.id;
+      document.querySelector("#editlink").href = editorurl+"/editor.html?token="+ Cookies.get('token') +'#' + result.id;
 
       document.querySelector("#authoravatar").src =
         S3staticurl + "/user/" + result.author_images;
