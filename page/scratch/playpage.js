@@ -151,7 +151,12 @@ function getprojectinfo() {
       document.querySelector("#authorinfo").description = result.author_motto;
       document.querySelector("#authorinfo").href = "/user?id=" + result.authorid;
       document.querySelector("#editlink-old").href = "/scratch/edit#" + result.id;
-      document.querySelector("#editlink").href = editorurl+"/editor.html?token="+ Cookies.get('token') +'#' + result.id;
+      if (Cookies.get('token')) {
+        document.querySelector("#editlink").href = editorurl+"/editor.html?token="+ Cookies.get('token') +'#' + result.id;
+      }else{
+        document.querySelector("#editlink").href = editorurl+"/editor.html#" + result.id;
+
+      }
 
       document.querySelector("#authoravatar").src =
         S3staticurl + "/user/" + result.author_images;
