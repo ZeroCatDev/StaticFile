@@ -145,7 +145,7 @@ function getprojectinfo() {
   _pid = getQueryString('id');
   AjaxGet("/scratch/projectinfo?id="+ getQueryString("id"), {}, function (result) {
     projectinfo = result
-    document.querySelector("#project_iframe").src = 'https://zerocat-static.houlangs.com/scratchguifile/embed.html#'+result.id;
+    document.querySelector("#project_iframe").src = editorurl+'/embed.html#'+result.id;
   document.querySelector("#authorinfo").headline =
         result.author_display_name;
       document.querySelector("#authorinfo").description = result.author_motto;
