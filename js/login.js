@@ -19,7 +19,7 @@ function getPW() {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
-      automsg(res.status);
+      automsg({ buttonText: "关闭", message: res.message });
     }
   });
   automsg({ buttonText: "关闭", message: "请查看邮箱" });
@@ -71,7 +71,7 @@ function register() {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
-      automsg(res.status);
+      automsg({ buttonText: "关闭", message: res.message });
     }
   });
 }
@@ -104,7 +104,8 @@ function login() {
       }
   window.location.reload();
     } else {
-      automsg(res.status);
+      console.log(res)
+      automsg({ buttonText: "关闭", message: res.message });
     }
   });
 }
@@ -128,7 +129,7 @@ function torepw() {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
-      automsg(res.status);
+      automsg({ buttonText: "关闭", message: res.message });
     }
   });
 }
