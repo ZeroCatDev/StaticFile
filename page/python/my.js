@@ -37,12 +37,6 @@ function loadPage(count, state) {
           </div>
         </mdui-card>
         </div>
-
-
-
-
-
-
     `);
             }
           } else {
