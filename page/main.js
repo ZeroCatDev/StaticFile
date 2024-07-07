@@ -27,7 +27,16 @@ function userinfo() {
   if (Cookies.get("token") == undefined) {
     document.getElementById("user-drawer-list").innerHTML =
       '<mdui-list-item rounded href="/user/login">注册</mdui-list-item> <mdui-list-item rounded href="/user/login">登录</mdui-list-item><mdui-list-item rounded class="close-user" icon="arrow_left">关闭</mdui-list-item>';
+
+      const UserDrawer = document.querySelector(".user-drawer");
+      const openUserButton = document.querySelectorAll(".open-user");
+      const closeUserButton = document.querySelector(".close-user");
+      openUserButton.forEach(button => {
+        button.addEventListener("click", () => UserDrawer.open = true);
+      });
+      closeUserButton.addEventListener("click", () => UserDrawer.open = false);
   }
+
   isLogin =false
 }
 
