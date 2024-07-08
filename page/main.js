@@ -12,7 +12,7 @@ function userinfo() {
       $(".ow-userlink").attr("href", "/user?id=" + decoded.userid);
       $(".ow-usernick").text(decoded.display_name);
       $(".ow-userid").text(decoded.userid);
-      $(".ow-useravatar").attr("src", "/api/usertx?id=" + decoded.userid);
+      $(".ow-useravatar").attr("src", S3staticurl+"/user/" + decoded.avatar);
       $(".ow-useravatar").attr("alt", decoded.display_name);
       Cookies.set("local-userid", decoded.userid);
 
