@@ -25,7 +25,7 @@ function Scratch(thetype) {
   laypage.render({
     elem: "scratch_change_page",
     count: scratch_count,
-    limit: 8,
+    limit: 16,
     theme: "#448aff",
     layout: ["count", "prev", "page", "next", "limit", "refresh", "skip"],
     limits: [8, 16, 32],
