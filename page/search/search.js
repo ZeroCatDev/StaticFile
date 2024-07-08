@@ -80,7 +80,7 @@ function projecthtml(type, d) {
                 <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
   <mdui-card variant="outlined" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
   <mdui-card clickable href="/scratch/play?id=${d.id}">
-    <img src="${S3staticurl}/scratch_slt/${d.id}"
+    <img src="${S3staticurl}/scratch_slt/${d.id}"   onerror="this.onerror=null; this.src='${staticurl}/img/scratchdefault.png';"
         style="pointer-events: none;width: 100%;" />
     <div class="card-media-covered">
             <div class="card-media-covered-text">${tzzt}${d.title}</div>
@@ -177,7 +177,7 @@ function search_page(num) {
     page = Math.ceil(num/8)
     console.log(page)
     for (var i = 0; i < page; i++) {
-    $('#search_change_page').append(`<mdui-button onclick="search_to_page(${i+1})">${i+1}</mdui-button>`);}
+    $('#search_change_page').append(`<mdui-segmented-button onclick="search_to_page(${i+1})">${i+1}</mdui-segmented-button>`);}
 }
 function search_to_page(num){
     Scratch_Search(num)
