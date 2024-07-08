@@ -19,29 +19,29 @@ function updatePassword() {
     return;
   }
 
-  AjaxFn("/my/set/pw", { oldpw: oldPW, newpw: newPW }, function (res) {
+  AjaxFn("/my/set/pw", { oldpw: oldPW, newpw: newPW,re:grecaptcha.getResponse() }, function (res) {
     if ("ok" == res["status"]) {
       layer.closeAll();
       automsg({ buttonText: "关闭", message: "密码修改成功！" });
     } else {
-      automsg(res["status"]);
+      automsg(res["message"]);
     }
   });
 }
 //修改头像
-var upload = layui.upload;
-upload.render({
-  elem: ".avatarUpload",
-  url: "/my/set/avatar",
-  accept: "file",
-  done: function (res, index, upload) {
-    if (res.status == "ok") {
-      window.location.reload();
-    } else {
-      automsg(res.status);
-    }
-  },
-});
+//var upload = layui.upload;
+//upload.render({
+//  elem: ".avatarUpload",
+ // url: "/my/set/avatar",
+  //accept: "file",
+  //done: function (res, index, upload) {
+   // if (res.status == "ok") {
+   //   window.location.reload();
+   // } else {
+   //   automsg(res.status);
+   // }
+  //},
+//});
 
 function loadmyinfo() {
   console.log("userinfo");
@@ -56,6 +56,8 @@ function loadmyinfo() {
       );
       $("#my_aboutme").attr("value", DOMPurify.sanitize(data.info.motto));
       $("#sex-chick").attr("value", data.info.sex);
+      $("#my_username").attr("value", data.info.username);
+
     }
   );
 }
@@ -65,36 +67,22 @@ $(function () {
 });
 //判断参数并上传到服务器
 function updateUsername() {
-  var pw = $("#old_password").val();
-  if (!userpasswordTest(pw)) {
-    $("#old_password").focus();
-    automsg({
-      buttonText: "关闭",
-      message: "密码格式:6~16长度,数字+字母+!@#$%^&*",
-    });
+  var newusername = $("#my_username").val();
+
+  if ("" == newusername || newusername.length > 16) {
+    $("#my_username")["focus"]();
+    layer["msg"]("用户名长度不正确");
     return;
   }
 
-  var un = $("#new_email").val();
-  if (!phoneTest(un)) {
-    $("#new_email").focus();
-    automsg({ buttonText: "关闭", message: "手机号格式不正确" });
-    return;
-  }
+  var data = {
+    username: newusername,
+    re:grecaptcha.getResponse()
+  };
 
-  if (!_GT_Tag.getValidate()) {
-    automsg({ buttonText: "关闭", message: "请验证手机号" });
-    return;
-  }
-
-  var yzm = $("#yzm_input").val();
-  if (yzm.length != 4) {
-    $("#yzm_input").focus();
-    automsg({ buttonText: "关闭", message: "请输入验证码" });
-    return;
-  }
-
-  automsg({ buttonText: "关闭", message: "错误" }); //automsg({buttonText: '关闭', message: '开源版本，无短信接口'});
+  AjaxFn("/my/set/username", data, function (res) {
+    automsg(res.status);
+  });
 }
 
 //修改昵称等信息
@@ -113,6 +101,7 @@ function updataInfo() {
     month: $("#sel_month")["val"](),
     day: $("#sel_day")["val"](),
     aboutme: $("#my_aboutme")["val"](),
+    re:grecaptcha.getResponse()
   };
 
   AjaxFn("/my/set/userinfo", data, function (res) {
@@ -152,14 +141,14 @@ async function updateinages() {
       // The third parameter is required for server
       formData.append("file", result, result.name);
       $.ajax({
-        url: Ow_Server + "/my/set/avatar",
+        url: Ow_Server + "/my/set/avatar?re=" + grecaptcha.getResponse(),
         type: "POST",
         data: formData,
         processData: false,
         contentType: false,
-      }).done(function () {
-        console.log("Upload success");
-        automsg("头像修改成功");
+      }).done(function (res) {
+        console.log(res);
+        automsg({ buttonText: "关闭", message: res.message });
       });
       // Send the compressed image file to server with XMLHttpRequest.
       console.log(result);
@@ -170,3 +159,14 @@ async function updateinages() {
     },
   });
 }
+
+
+
+function onloadCallback() {
+  grecaptcha.render("#captcha-div", {
+      sitekey: rekey,
+    });
+
+  }function reloudcaptcha(){
+    grecaptcha.reset();
+  }

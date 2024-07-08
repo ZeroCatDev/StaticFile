@@ -10,10 +10,17 @@ function AjaxFn(url, data, callbackFn) {
     type: "POST",
     data: data,
     success: function (d) {
+      if(d.message){
+        automsg({ buttonText: "关闭", message: d.message });
+        console.log(d.message)
+
+      }
       callbackFn(d);
+
     },
     error: function (err) {
       automsg(err);
+      console.log(err)
     },
   });
 }
@@ -28,10 +35,16 @@ function AjaxGet(url, data, callbackGet, needauth) {
     type: "GET",
     data: data,
     success: function (d) {
+      if(d.message){
+        automsg({ buttonText: "关闭", message: d.message });
+        console.log(d.message)
+      }
       callbackGet(d);
     },
     error: function (err) {
       automsg(err);
+      console.log(err)
+
     },
   });
 }

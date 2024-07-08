@@ -20,7 +20,7 @@ function loadPage(count, state) {
                               <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
 <mdui-card variant="filled" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
 
-  <img src="${S3staticurl}/scratch_slt/${d[i].id}"
+  <img src="${S3staticurl}/scratch_slt/${d[i].id}"   onerror="this.onerror=null; this.src='${staticurl}/img/scratchdefault.png';"
       style="pointer-events: none;width: 100%;" />
   <div class="card-media-covered">
           <div class="card-media-covered-text">${d[i].title}</div>
@@ -43,7 +43,7 @@ function loadPage(count, state) {
                               <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
 <mdui-card variant="filled" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
 
-  <img src="${S3staticurl}/scratch_slt/${d[i].id}"
+  <img src="${S3staticurl}/scratch_slt/${d[i].id}"   onerror="this.onerror=null; this.src='${staticurl}/img/scratchdefault.png';"
       style="pointer-events: none;width: 100%;" />
   <div class="card-media-covered">
           <div class="card-media-covered-text">${d[i].title}</div>
