@@ -145,41 +145,48 @@ function getprojectinfo() {
   _pid = getQueryString('id');
   AjaxGet("/scratch/projectinfo?id="+ getQueryString("id"), {}, function (result) {
     projectinfo = result
-    document.querySelector("#project_iframe").src = editorurl+'/embed.html#'+result.id;
-  document.querySelector("#authorinfo").headline =
-        result.author_display_name;
-      document.querySelector("#authorinfo").description = result.author_motto;
-      document.querySelector("#authorinfo").href = "/user?id=" + result.authorid;
-      document.querySelector("#editlink-old").href = "/scratch/edit#" + result.id;
+    document.querySelectorAll(".project_iframe").forEach(element => element.src = editorurl+'/embed.html#'+result.id)
+  document.querySelectorAll(".authorinfo").forEach(element => element.headline =
+        result.author_display_name)
+
+      document.querySelectorAll(".authorinfo").forEach(element => element.description = result.author_motto)
+
+      document.querySelectorAll(".authorinfo").forEach(element => element.href = "/user.html?id=" + result.authorid)
+
+      document.querySelectorAll(".editlink-old").forEach(element => element.href = "/scratch/edit.html#" + result.id)
+
       if (Cookies.get('token')) {
-        document.querySelector("#editlink").href = editorurl+"/editor.html?token="+ Cookies.get('token') +'#' + result.id;
+        document.querySelectorAll(".editlink").forEach(element => element.href = editorurl+"/editor.html?token="+ Cookies.get('token') +'#' + result.id)
+
       }else{
-        document.querySelector("#editlink").href = editorurl+"/editor.html#" + result.id;
+        document.querySelectorAll(".editlink").forEach(element => element.href = editorurl+"/editor.html#" + result.id)
 
       }
 
-      document.querySelector("#authoravatar").src =
-        S3staticurl + "/user/" + result.author_images;
-      document.querySelector("#projecttitle").innerText = result.title;
-      document.querySelector("#projectdescription").innerText =
-        result.description;
-      document.querySelector("#projecttime").innerText = `最后更新:${FormatTime(
+      document.querySelectorAll(".authoravatar").forEach(element => element.src =
+        S3staticurl + "/user/" + result.author_images)
+        document.querySelectorAll('.projecttitle').forEach(element => element.innerText = result.title);
+
+
+
+      document.querySelectorAll(".projectdescription").forEach(element => element.innerText =
+        result.description)
+      document.querySelectorAll(".projecttime").forEach(element => element.innerText = `最后更新:${FormatTime(
         "yyyy-MM-dd hh:mm:ss",
         result.time
-      )}`;
-      document.querySelector("#projectview").innerText =
-        result.view_count + "浏览";
+      )}`)
+      document.querySelectorAll(".projectview").forEach(element => element.innerText =
+        result.view_count + "浏览")
       if (result.state == "0") {
         document
-          .querySelector("#projectstate")
-          .setAttribute("icon", "lock_person");
-        document.querySelector("#projectstate").innerText = "未分享";
+          .querySelectorAll(".projectstate").forEach(element => element.setAttribute("icon", "lock_person"))
+        document.querySelectorAll(".projectstate").forEach(element => element.innerText = "未分享")
       } else if (result.state == "1") {
-        document.querySelector("#projectstate").setAttribute("icon", "share");
-        document.querySelector("#projectstate").innerText = "公开作品";
+        document.querySelectorAll(".projectstate").forEach(element => element.setAttribute("icon", "share"))
+        document.querySelectorAll(".projectstate").forEach(element => element.innerText = "公开作品")
       } else if (result.state == "2") {
-        document.querySelector("#projectstate").setAttribute("icon", "star");
-        document.querySelector("#projectstate").innerText = "优秀作品";
+        document.querySelectorAll(".projectstate").forEach(element => element.setAttribute("icon", "star"))
+        document.querySelectorAll(".projectstate").forEach(element => element.innerText = "优秀作品")
       }
       like_count = result.like_count
       favo_count = result.favo_count

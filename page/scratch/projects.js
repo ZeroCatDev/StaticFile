@@ -41,15 +41,15 @@ function Scratch(thetype) {
             $("#scratch_projects").append(`
 <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
 <mdui-card variant="filled" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
-<mdui-card clickable href="/scratch/play?id=${d[i].id}">
-  <img src="${S3staticurl}/scratch_slt/${d[i].id}"   onerror="this.onerror=null; this.src='${staticurl}/img/scratchdefault.png';"
+<mdui-card clickable href="/scratch/play.html?id=${d[i].id}">
+  <img src="${S3staticurl}/scratch_slt/${d[i].id}"   onerror="this.onerror=null; this.src='/assets/images/scratchdefault.png';"
       style="pointer-events: none;width: 100%;" />
   <div class="card-media-covered">
           <div class="card-media-covered-text">${tzzt}${d[i].title}</div>
   </div>
 </mdui-card>
-<div href='/user?id=${d[i].authorid}' style="padding: 16px;">
-  <img class="card-avatar" src="/api/usertx?id=${d[i].authorid}" />
+<div href='/user.html?id=${d[i].authorid}' style="padding: 16px;">
+  <img class="card-avatar" src="${S3staticurl}/user/${d[i].images}" />
   <div class="card-user card-user-name">${d[i].display_name}</div>
   <div class="card-user card-user-motto">${d[i].view_count}浏览</div>
 </div>
@@ -96,15 +96,15 @@ function Scratch_Search() {
         $("#scratch_projects").append(`
                   <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
 <mdui-card variant="filled" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
-<mdui-card clickable href="/scratch/play?id=${d[i].id}">
-  <img src="${S3staticurl}/scratch_slt/${d[i].id}"  onerror="this.onerror=null; this.src='${staticurl}/img/scratchdefault.png';"
+<mdui-card clickable href="/scratch/play.html?id=${d[i].id}">
+  <img src="${S3staticurl}/scratch_slt/${d[i].id}"  onerror="this.onerror=null; this.src='/assets/images/scratchdefault.png';"
       style="pointer-events: none;width: 100%;" />
   <div class="card-media-covered">
           <div class="card-media-covered-text">${tzzt}${d[i].title}</div>
   </div>
 </mdui-card>
-<div href='/user?id=${d[i].authorid}' style="padding: 16px;">
-  <img class="card-avatar" src="/api/usertx?id=${d[i].authorid}" />
+<div href='/user.html?id=${d[i].authorid}' style="padding: 16px;">
+  <img class="card-avatar" src="${S3staticurl}/user/${d[i].images}" />
   <div class="card-user card-user-name">${d[i].display_name}</div>
   <div class="card-user card-user-motto">${d[i].view_count}浏览</div>
 </div>

@@ -16,6 +16,7 @@ $("#search_txt").keydown(function (e) {
     Scratch_Search();
   }
 });
+var userinfo = [];
 function Scratch_Search(curr) {
   var search_txt = $("#search_txt").val() || "";
   //if (search_txt == "") {$("#search_txt").focus();return;}
@@ -24,6 +25,7 @@ function Scratch_Search(curr) {
   console.log("搜索用户ID：" + search_userid);
 
   search_type = $("#search_type").val() || "";
+  if (search_type == "all") search_type = "";
   search_title = $("#search_title").val() || "";
   search_src = $("#search_src").val() || "";
 
@@ -46,6 +48,7 @@ function Scratch_Search(curr) {
     },
     function (d) {
         var data = d.data
+        userinfo = d.user
         var totalCount = d.totalCount
 
 
@@ -55,13 +58,10 @@ function Scratch_Search(curr) {
 
         for (var i = 0; i < data.length; i++) {
           console.log(data[i]);
-          $("#scratch_projects").append(projecthtml(search_type, data[i]));
+          $("#scratch_projects").append(projecthtml(data[i]));
         }
         search_page(totalCount[0].totalCount)
-        document.getElementById("scratch_type").classList.add("mdui-hidden");
-        document.getElementById(
-          "scratch_change_page"
-        ).innerHTML = `<mdui-button onclick="Scratch(scratch_type)">取消搜索</mdui-button>`;
+
 
       } else {
         automsg({ buttonText: "关闭", message: "无满足条件的作品" });
@@ -70,31 +70,33 @@ function Scratch_Search(curr) {
   );
 
 }
-function projecthtml(type, d) {
+function projecthtml( d) {
+  if(!userinfo.find(item => item.id === Number(d.authorid))){d.authorid=0}
   tzzt = "";
-  if (type == "scratch") {
+  if (d.type == "scratch") {
     if (d.state == 2) {
       tzzt = '<i class="mdui-icon material-icons">stars</i>';
     }
     return `
                 <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
   <mdui-card variant="outlined" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
-  <mdui-card clickable href="/scratch/play?id=${d.id}">
-    <img src="${S3staticurl}/scratch_slt/${d.id}"   onerror="this.onerror=null; this.src='${staticurl}/img/scratchdefault.png';"
+  <mdui-card clickable href="/scratch/play.html?id=${d.id}">
+    <img src="${S3staticurl}/scratch_slt/${d.id}"   onerror="this.onerror=null; this.src='/assets/images/scratchdefault.png';"
         style="pointer-events: none;width: 100%;" />
     <div class="card-media-covered">
             <div class="card-media-covered-text">${tzzt}${d.title}</div>
     </div>
   </mdui-card>
-  <div href='/user?id=${d.authorid}' style="padding: 16px;">
-    <img class="card-avatar" src="/api/usertx?id=${d.authorid}" />
-    <div class="card-user card-user-name">${d.display_name}</div>
+  <div href='/user.html?id=${d.authorid}' style="padding: 16px;">
+    <img class="card-avatar" src="${S3staticurl}/user/${userinfo.find(item => item.id === Number(d.authorid)).images||'1'}" />
+    <div class="card-user card-user-name">${userinfo.find(item => item.id === Number(d.authorid)).display_name  ||'已销号用户'  }</div>
     <div class="card-user card-user-motto">${d.view_count}浏览</div>
   </div>
   </mdui-card>
   </div>`;
   }
-  if (type == "python") {
+  if (d.type == "python") {
+    console.log(d.authorid)
     return `
                 <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
 			<mdui-card variant="outlined" href='/python/play?id=${d.id}' clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden">
@@ -103,8 +105,8 @@ function projecthtml(type, d) {
 						<div class="substr card-main-subtitle">${d.description}</div>
 					</div>
 				<div style="padding: 16px;">
-					<img class="card-avatar" src="/api/usertx?id=${d.authorid}" />
-					<div class="card-user card-user-name">${d.display_name}</div>
+					<img class="card-avatar" src="${S3staticurl}/user/${userinfo.find(item => item.id === Number(d.authorid)).images||'1'}" />
+					<div class="card-user card-user-name">${userinfo.find(item => item.id === Number(d.authorid)).display_name ||'已销号用户' }</div>
 					<div class="card-user card-user-motto">${d.view_count}浏览</div>
 				</div>
 			</mdui-card>

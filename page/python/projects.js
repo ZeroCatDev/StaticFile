@@ -53,7 +53,7 @@ $(function () {
 							<div class="substr card-main-subtitle">${d[i].description}</div>
 						</div>
 					<div style="padding: 16px;">
-						<img class="card-avatar" src="/api/usertx?id=${d[i].authorid}" />
+						<img class="card-avatar" src="${S3staticurl}/user/${d[i].images}" />
 						<div class="card-user card-user-name">${d[i].display_name}</div>
 						<div class="card-user card-user-motto">${d[i].view_count}浏览</div>
 					</div>
@@ -103,7 +103,7 @@ d[i].description = '暂无简介'
 						<div class="substr card-main-subtitle">${d[i].description}</div>
 					</div>
 				<div style="padding: 16px;">
-					<img class="card-avatar" src="/api/usertx?id=${d[i].authorid}" />
+					<img class="card-avatar" src="${S3staticurl}/user/${d[i].images}" />
 					<div class="card-user card-user-name">${d[i].display_name}</div>
 					<div class="card-user card-user-motto">${d[i].view_count}浏览</div>
 				</div>

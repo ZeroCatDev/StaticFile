@@ -36,17 +36,17 @@ function loaduserinfo(load) {
 
     AjaxGet("/api/getuserinfo", {id:getQueryString("id")}, function (data) {
       console.log(data.info);
-      $("#mainuserdisplay_name").html(DOMPurify.sanitize(data.info.display_name));
+      $("#mainuserdisplay_name").html(DOMPurify.sanitize(data.info.user.display_name));
 
-      $("#usermotto").html(DOMPurify.sanitize(marked.parse(data.info.motto)));
+      $("#usermotto").html(DOMPurify.sanitize(marked.parse(data.info.user.motto)));
       $("#mainuserimages").attr(
         "src",
-        S3staticurl + "/user/" + data.info.images
+        S3staticurl + "/user/" + data.info.user.images
       );
-      $("#regTime").html(FormatTime("yyyy-MM-dd", data.info.regTime) + "注册");
-      $("#tag").html(data.info.tag);
-      scratch_count = data.info.scratch_count,
-      python_count = data.info.python_count
+      $("#regTime").html(FormatTime("yyyy-MM-dd", data.info.user.regTime) + "注册");
+      $("#tag").html(data.info.user.tag);
+      scratch_count = data.info.count.scratchcount,
+      python_count = data.info.count.pythoncount
       load()
         });
 
@@ -86,7 +86,7 @@ function Scratch() {
             }
             $("#scratch_projects").append(`
                 <div class="mdui-col-xl-2 mdui-col-lg-2 mdui-col-md-3 mdui-col-sm-6 mdui-col-xs-12" style="margin:5px 0px 5px 0px;">
-<mdui-card variant="filled" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden" href="/scratch/play?id=${d[i].id}">
+<mdui-card variant="filled" clickable ondragstart="return false" style="user-select:none;width: 100%;overflow: hidden" href="/scratch/play.html?id=${d[i].id}">
 
     <img src="${S3staticurl}/scratch_slt/${d[i].id}"
       style="pointer-events: none;width: 100%;" />
