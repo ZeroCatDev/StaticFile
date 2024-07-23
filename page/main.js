@@ -53,6 +53,7 @@ $(function () {
       $("#mdui_css").removeAttr("href");
     }
   }
+  /*
   getCDNinfo = function () {
     jQuery.ajax({
       url: "/cdn-cgi/trace",
@@ -76,7 +77,7 @@ $(function () {
   };
   jQuery(document).ready(function () {
     getCDNinfo();
-  });
+  });*/
 
   const webdialog = document.querySelector("#webdialog");
   const webdialogiframe = document.querySelector("#webdialogiframe");
