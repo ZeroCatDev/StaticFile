@@ -151,7 +151,7 @@ function getprojectinfo() {
 
       document.querySelectorAll(".authorinfo").forEach(element => element.description = result.author_motto)
 
-      document.querySelectorAll(".authorinfo").forEach(element => element.href = "/user.html?id=" + result.authorid)
+      document.querySelectorAll(".authorinfo").forEach(element => element.href = "/user?id=" + result.authorid)
 
       document.querySelectorAll(".editlink-old").forEach(element => element.href = "/scratch/edit.html#" + result.id)
 

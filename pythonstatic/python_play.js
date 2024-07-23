@@ -63,10 +63,10 @@ var _work_title = "";
 
 function show_python_userinfo(work) {
   console.log(work);
-  document.querySelector('#authorinfo').setAttribute('headline', work.display_name);
-  document.querySelector('#authorinfo').setAttribute('description',work.motto);
-  document.querySelector('#authorinfo').setAttribute('href','/user?id=' + work.id);
-  document.querySelector('#authoravatar').setAttribute('src', S3staticurl+'/user/'+work.images);
+  document.querySelector('#authorinfo').setAttribute('headline', work.user.display_name);
+  document.querySelector('#authorinfo').setAttribute('description',work.user.motto);
+  document.querySelector('#authorinfo').setAttribute('href','/user?id=' + work.user.id);
+  document.querySelector('#authoravatar').setAttribute('src', S3staticurl+'/user/'+work.user.images);
 
 }
 //用一个作品数据初始化界面

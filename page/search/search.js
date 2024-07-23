@@ -87,7 +87,7 @@ function projecthtml( d) {
             <div class="card-media-covered-text">${tzzt}${d.title}</div>
     </div>
   </mdui-card>
-  <div href='/user.html?id=${d.authorid}' style="padding: 16px;">
+  <div href='/user?id=${d.authorid}' style="padding: 16px;">
     <img class="card-avatar" src="${S3staticurl}/user/${userinfo.find(item => item.id === Number(d.authorid)).images||'1'}" />
     <div class="card-user card-user-name">${userinfo.find(item => item.id === Number(d.authorid)).display_name  ||'已销号用户'  }</div>
     <div class="card-user card-user-motto">${d.view_count}浏览</div>

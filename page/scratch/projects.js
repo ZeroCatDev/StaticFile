@@ -48,7 +48,7 @@ function Scratch(thetype) {
           <div class="card-media-covered-text">${tzzt}${d[i].title}</div>
   </div>
 </mdui-card>
-<div href='/user.html?id=${d[i].authorid}' style="padding: 16px;">
+<div href='/user?id=${d[i].authorid}' style="padding: 16px;">
   <img class="card-avatar" src="${S3staticurl}/user/${d[i].images}" />
   <div class="card-user card-user-name">${d[i].display_name}</div>
   <div class="card-user card-user-motto">${d[i].view_count}浏览</div>
@@ -103,7 +103,7 @@ function Scratch_Search() {
           <div class="card-media-covered-text">${tzzt}${d[i].title}</div>
   </div>
 </mdui-card>
-<div href='/user.html?id=${d[i].authorid}' style="padding: 16px;">
+<div href='/user?id=${d[i].authorid}' style="padding: 16px;">
   <img class="card-avatar" src="${S3staticurl}/user/${d[i].images}" />
   <div class="card-user card-user-name">${d[i].display_name}</div>
   <div class="card-user card-user-motto">${d[i].view_count}浏览</div>
