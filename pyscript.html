@@ -6,22 +6,16 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link
         rel="stylesheet"
-        href="https://pyscript.net/releases/2024.6.2/core.css"
+        href="https://pyscript.net/releases/2024.8.2/core.css"
     />
-    <script
-        type="module"
-        src="https://pyscript.net/releases/2024.6.2/core.js"
-    ></script>
+    <script type="module" src="https://pyscript.net/releases/2024.8.2/core.js"></script>
+
     </head>
     <body>
-        <script type="py" terminal>
-            from pyscript import display
-            display("Hello World!") # this goes to the DOM
-            print("Hello terminal") # this goes to the terminal
+       <script type="mpy" terminal worker>
+            import code
 
-        </script><script type="py" terminal worker>
-            name = input("What is your name? ")
-            print(f"Hello, {name}")
+            code.interact()
         </script>
 
              </body>
