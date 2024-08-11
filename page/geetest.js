@@ -1,8 +1,6 @@
 var captchaId = captchaid   // gt_id
-var product = "popup"
-if (product !== 'bind') {
-    $('#btn').remove();
-}
+var product = "float"
+
 class Grecaptcha {
     getResponse() {
       return JSON.stringify(gt.getValidate());
