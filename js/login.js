@@ -134,7 +134,7 @@ function torepw() {
   });
 }
 function switchPage(goPage) {
-  $(`#${goPage}`).show().siblings().hide();
+  $(`.${goPage}`).show().siblings().hide();
 
 }
 function reloudcaptcha(){
