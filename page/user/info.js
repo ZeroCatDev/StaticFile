@@ -19,7 +19,7 @@ function updatePassword() {
     return;
   }
 
-  AjaxFn("/my/set/pw", { oldpw: oldPW, newpw: newPW,re:grecaptcha.getResponse() }, function (res) {
+  AjaxFn("/my/set/pw", { oldpw: oldPW, newpw: newPW,captcha:grecaptcha.getResponse() }, function (res) {
     if ("ok" == res["status"]) {
       layer.closeAll();
       automsg({ buttonText: "关闭", message: "密码修改成功！" });
@@ -52,11 +52,11 @@ function loadmyinfo() {
       console.log(data.info);
       $("#my_display_name").attr(
         "value",
-        DOMPurify.sanitize(data.info.display_name)
+        data.info.user.display_name
       );
-      $("#my_aboutme").attr("value", DOMPurify.sanitize(data.info.motto));
-      $("#sex-chick").attr("value", data.info.sex);
-      $("#my_username").attr("value", data.info.username);
+      $("#my_aboutme").attr("value", DOMPurify.sanitize(data.info.user.motto));
+      $("#sex-chick").attr("value", data.info.user.sex);
+      $("#my_username").attr("value", data.info.user.username);
 
     }
   );
@@ -77,7 +77,7 @@ function updateUsername() {
 
   var data = {
     username: newusername,
-    re:grecaptcha.getResponse()
+    captcha:grecaptcha.getResponse()
   };
 
   AjaxFn("/my/set/username", data, function (res) {
@@ -101,7 +101,7 @@ function updataInfo() {
     month: $("#sel_month")["val"](),
     day: $("#sel_day")["val"](),
     aboutme: $("#my_aboutme")["val"](),
-    re:grecaptcha.getResponse()
+    captcha:grecaptcha.getResponse()
   };
 
   AjaxFn("/my/set/userinfo", data, function (res) {
@@ -141,7 +141,7 @@ async function updateinages() {
       // The third parameter is required for server
       formData.append("file", result, result.name);
       $.ajax({
-        url: Ow_Server + "/my/set/avatar?re=" + grecaptcha.getResponse(),
+        url: Ow_Server + "/my/set/avatar?captcha=" + grecaptcha.getResponse(),
         type: "POST",
         data: formData,
         processData: false,

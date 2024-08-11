@@ -15,7 +15,7 @@ function getPW() {
     return;
   }
   var re = grecaptcha.getResponse();
-  AjaxFn("/user/repw", { un: un, re: re }, function (res) {
+  AjaxFn("/user/repw", { un: un, captcha: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
@@ -67,7 +67,7 @@ function register() {
   //if (!userpasswordTest(pw)) {$("#reg_password").focus();automsg({buttonText: '关闭', message: '密码格式:6~16长度,数字+字母+!@#$%^&*'});return;}
 
   var re = grecaptcha.getResponse();
-  AjaxFn("/user/register", { un: un, pw: pw, re: re }, function (res) {
+  AjaxFn("/user/register", { un: un, pw: pw, captcha: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
@@ -92,14 +92,14 @@ function login() {
   var pw = $("#password").val();
   //if (!userpasswordTest(pw)) { $("#password").focus(); automsg({ buttonText: "关闭", message: "密码不正确" }); return; }
   var re = grecaptcha.getResponse();
-  AjaxFn("/user/login", { un: un, pw: pw, re: re }, function (res) {
+  AjaxFn("/user/login", { un: un, pw: pw, captcha: re }, function (res) {
     if ("OK" == res.status) {
       console.log(res['token'])
       Cookies.set('token',res['token'])
       if(getQueryString('redirect')){
 
         if(getQueryString('redirect')=='editor'){
-          window.open("https://zerocatdev.github.io/scratch-gui/editor.html?token="+res['token'])
+          window.open("https://scratch.190823.xyz/editor.html?token="+res['token'])
         }
       }
   window.location.reload();
@@ -125,7 +125,7 @@ function torepw() {
     return;
   }
   var re = grecaptcha.getResponse();
-  AjaxFn("/user/torepw", { jwttoken: token, pw: pw, re: re }, function (res) {
+  AjaxFn("/user/torepw", { jwttoken: token, pw: pw, captcha: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
