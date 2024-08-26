@@ -58,10 +58,10 @@ function register() {
   var un = $("#reg_email").val();
   if (!emailTest(un)) {
     $("#reg_email").focus();
-    automsg({ buttonText: "关闭", message: "账号格式：字母+数字" });
+    automsg({ buttonText: "关闭", message: "账户格式：字母+数字" });
     return;
   }
-  //if (phoneTest(un)) {$("#reg_email").focus();automsg({buttonText: '关闭', message: '手机号不能直接用于注册账号'});return;}
+  //if (phoneTest(un)) {$("#reg_email").focus();automsg({buttonText: '关闭', message: '手机号不能直接用于注册账户'});return;}
 
   var pw = $("#reg_password").val();
   //if (!userpasswordTest(pw)) {$("#reg_password").focus();automsg({buttonText: '关闭', message: '密码格式:6~16长度,数字+字母+!@#$%^&*'});return;}
@@ -82,7 +82,7 @@ function login() {
   if (!emailTest(un)) {
     $("#email").focus();
     automsg({
-      message: "请填写正确的账号：字母+数字",
+      message: "请填写正确的账户：字母+数字",
       type: "error",
       showCloseButton: true,
     });

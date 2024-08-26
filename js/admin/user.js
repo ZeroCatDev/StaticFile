@@ -6,7 +6,7 @@ var _table_render = table.render({
     , toolbar: '#TableOne_bar'
     , page: true
     , cols: [[
-        { field: 'email', width: 120, title: '账号' }
+        { field: 'email', width: 120, title: '账户' }
         , { field: 'display_name', title: '昵称' }
         , { title: '作品查看', width: 100, align: "center", templet: "#tyTpl",event:'see_works'}
         , { title: '课程查看', width: 100, align: "center", templet: "#tyTpl",event:"see_course"}
@@ -29,14 +29,14 @@ table.on('toolbar(TableOne)', function (obj) {
     } else if (obj.event === 'getFH') {
         _table_render.reload({where: {s: 2},page: {curr: 1}});
     } else if (obj.event === 'search') {
-        layer.prompt({title:'请输入查找的账号',formType:0, maxlength: 16,shadeClose:true}, function (v, index) {
+        layer.prompt({title:'请输入查找的账户',formType:0, maxlength: 16,shadeClose:true}, function (v, index) {
             _table_render.reload({where: {s:9, t:v},page: {curr: 1}});
             layer.close(index);
         });
     } else if (obj.event === 'new') {
         layer.prompt({title:'添加新用户',formType:0, maxlength: 16,shadeClose:true}, function (v, index) {
             if (!emailTest(v)) {
-                layer.msg({buttonText: '关闭', message: '账号格式不正确'});
+                layer.msg({buttonText: '关闭', message: '账户格式不正确'});
                 return;
             }
 
@@ -78,7 +78,7 @@ table.on('tool(TableOne)', function (obj) {
                     layer.close(index);
                 }
             })
-        });      
+        });
     } else if (obj.event === 'fh') {
         layer.confirm('即将对此用户封号？',{title:'重要提示',shadeClose:true}, function (index) {
             AjaxFn('/admin/user_setstate', {'id': obj.data.id,'s':'2'}, function (res){
@@ -90,7 +90,7 @@ table.on('tool(TableOne)', function (obj) {
             })
         });
     } else  if (obj.event === 'jf') {
-        layer.confirm('即将对此账号进行解封？',{title:'重要提示',shadeClose:true}, function (index) {
+        layer.confirm('即将对此账户进行解封？',{title:'重要提示',shadeClose:true}, function (index) {
             AjaxFn('/admin/user_setstate', {'id': obj.data.id,'s':'0'}, function (res){
                 layer.msg(res['msg']);
                 if ('success' == res['status']){
@@ -102,19 +102,19 @@ table.on('tool(TableOne)', function (obj) {
     }
 });
 
-// 批量生成账号
+// 批量生成账户
 function new100(){
     var select_data=[];
     layer.open({
         type: 1
         ,shadeClose: true
-        ,title: '批量生成账号'
+        ,title: '批量生成账户'
         ,btn: ['确定','取消']
         ,area: ['280px', '240px']
         ,content:`<div style="margin:12px">
-                    <input id="qz_input" type="text" maxlength="8" placeholder="请输入账号前缀(长度：4~8)" class="layui-input" style="margin:12px 0;">
+                    <input id="qz_input" type="text" maxlength="8" placeholder="请输入账户前缀(长度：4~8)" class="layui-input" style="margin:12px 0;">
 
-                    <input id="sl_input" type="text" maxlength="3" placeholder="请输入账号数量(大小：1~100)" class="layui-input">
+                    <input id="sl_input" type="text" maxlength="3" placeholder="请输入账户数量(大小：1~100)" class="layui-input">
                   </div>`
         ,success:function(){
 
@@ -138,7 +138,7 @@ function new100(){
                 layer.msg({buttonText: '关闭', message: '数量不正确：1~100'});
                 return;
             }
- 
+
             AjaxFn('/admin/user_new100', {qz:qz, sl:sl}, function (res){
                 layer.msg(res.msg);
                 if ('ok' == res.status){
@@ -146,5 +146,5 @@ function new100(){
                 }
             })
         }
-    }); 
+    });
 };
