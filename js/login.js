@@ -15,7 +15,7 @@ function getPW() {
     return;
   }
   var re = grecaptcha.getResponse();
-  AjaxFn("/user/repw", { un: un, captcha: re }, function (res) {
+  AjaxFn("/account/repw", { un: un, captcha: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
@@ -67,7 +67,7 @@ function register() {
   //if (!userpasswordTest(pw)) {$("#reg_password").focus();automsg({buttonText: '关闭', message: '密码格式:6~16长度,数字+字母+!@#$%^&*'});return;}
 
   var re = grecaptcha.getResponse();
-  AjaxFn("/user/register", { un: un, pw: pw, captcha: re }, function (res) {
+  AjaxFn("/account/register", { un: un, pw: pw, captcha: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
@@ -125,7 +125,7 @@ function torepw() {
     return;
   }
   var re = grecaptcha.getResponse();
-  AjaxFn("/user/torepw", { jwttoken: token, pw: pw, captcha: re }, function (res) {
+  AjaxFn("/account/torepw", { jwttoken: token, pw: pw, captcha: re }, function (res) {
     if ("OK" == res.status) {
       window.location.reload();
     } else {
