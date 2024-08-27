@@ -116,7 +116,7 @@ function shareProject(id) {
     confirmText: "确认",
     cancelText: "取消",
     onConfirm: () =>
-      AjaxFn("/my/python/share", { id: id }, function (res) {
+      AjaxFn("/my/project/share", { id: id }, function (res) {
         automsg(res["msg"]);
         if ("success" == res["status"]) {
           window.location.reload();

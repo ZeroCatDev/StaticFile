@@ -95,22 +95,17 @@ function show_python_work(work) {
   document.getElementById("description").innerText = `${work.description}`;
 
   console.log(work);
-  if (work.state=='0'){
+  if (work.state=='private'){
     document.querySelector('#projectstate').setAttribute('icon', 'lock_person');
     document.querySelector('#projectstate').innerText='未分享'
 
   }
-  else if (work.state=='1'){
+  else if (work.state=='public'){
     document.querySelector('#projectstate').setAttribute('icon', 'share');
     document.querySelector('#projectstate').innerText='公开作品'
 
   }
 
-  else if (work.state=='2'){
-    document.querySelector('#projectstate').setAttribute('icon', 'star');
-    document.querySelector('#projectstate').innerText='优秀作品'
-
-  }
   AjaxGet(
     `/api/getuserinfo`,
     { id: work.authorid },

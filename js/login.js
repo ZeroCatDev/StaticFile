@@ -44,7 +44,7 @@ function register() {
   if (!document.getElementById("xiugai-chick").checked) {
     automsg({
       buttonText: "关闭",
-      message: "请阅读并选择是否同意修改免责条款",
+      message: "请阅读并选择是否同意免责条款",
     });
     return;
   }
