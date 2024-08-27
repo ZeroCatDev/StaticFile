@@ -87,7 +87,7 @@ function show_python_work(work) {
   window.location.hash = work.id;
 
   console.log(work);
-  window.editor.setValue(work.src); //设置作品源代码
+  window.editor.setValue(work.source); //设置作品源代码
 
   _work_id = work.id;
   _work_state = work.state;
@@ -110,7 +110,7 @@ function builtinRead(n) {
 }
 // 代码模式运行
 function run_it() {
-  src = window.editor.getValue();
+  source = window.editor.getValue();
 
   var OP_Div = document.getElementById("output");
   OP_Div.innerText = "";
@@ -120,7 +120,7 @@ function run_it() {
   (Sk.TurtleGraphics || (Sk.TurtleGraphics = {}))["target"] = "pythoncanvas";
   var draw_ = Sk.misceval.asyncToPromise(function () {
     f();
-    return Sk.importMainWithBody("<stdin>", ![], src, !![]);
+    return Sk.importMainWithBody("<stdin>", ![], source, !![]);
   });
   draw_.then(
     function (r) {},

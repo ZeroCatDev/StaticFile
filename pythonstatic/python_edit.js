@@ -74,7 +74,7 @@ function show_python_work(work) {
   window.location.hash = work.id;
   $("#work_title_input").val(work.title);
   $("#work_info_input").val(work.description);
-  window.editor.setValue(work.src); //设置作品源代码
+  window.editor.setValue(work.source); //设置作品源代码
 
   _work_id = work.id;
   _work_state = work.state;
@@ -141,7 +141,7 @@ $("#files").change(function () {
           id: 0,
           state: 0,
           title: _work_title,
-          src: this.result,
+          source: this.result,
         });
         document.getElementById("files").value = "";
       });
@@ -158,9 +158,9 @@ function save_file() {
 
   _work_title = t;
 
-  src = editor.getValue()
+  source = editor.getValue()
 
-  var n = new File([src], _work_title + ".py", {
+  var n = new File([source], _work_title + ".py", {
     type: "text/plain;charset=utf-8",
   });
   saveAs(n);
@@ -267,7 +267,7 @@ function builtinRead(n) {
 }
 // 代码模式运行
 function run_it() {
-  src = editor.getValue()
+  source = editor.getValue()
 
   var OP_Div = document.getElementById("output");
   OP_Div.innerHTML = "";
@@ -277,7 +277,7 @@ function run_it() {
   (Sk.TurtleGraphics || (Sk.TurtleGraphics = {}))["target"] = "pythoncanvas";
   var draw_ = Sk.misceval.asyncToPromise(function () {
     f();
-    return Sk.importMainWithBody("<stdin>", ![], src, !![]);
+    return Sk.importMainWithBody("<stdin>", ![], source, !![]);
   });
   draw_.then(
     function (r) {},
